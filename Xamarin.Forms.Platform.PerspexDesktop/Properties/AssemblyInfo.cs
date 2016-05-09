@@ -37,7 +37,9 @@ using Xamarin.Forms.Platform.PerspexDesktop;
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
 
-[assembly: Dependency(typeof(DesktopResourcesProvider))]
+[assembly: Dependency(typeof(WindowsResourcesProvider))]
+[assembly: Dependency(typeof(WindowsSerializer))]
+
 
 // Views
 

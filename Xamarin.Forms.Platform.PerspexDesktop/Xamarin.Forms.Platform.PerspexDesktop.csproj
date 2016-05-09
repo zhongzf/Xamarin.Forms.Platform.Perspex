@@ -35,6 +35,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
@@ -49,11 +50,12 @@
     <Compile Include="ColorConverter.cs" />
     <Compile Include="ConvertExtensions.cs" />
     <Compile Include="DefaultRenderer.cs" />
-    <Compile Include="DesktopPlatformServices.cs" />
-    <Compile Include="DesktopResourcesProvider.cs" />
+    <Compile Include="DesktopBaseWindow.cs" />
+    <Compile Include="WindowsPlatformServices.cs" />
+    <Compile Include="WindowsResourcesProvider.cs" />
     <Compile Include="DesktopWindow.cs" />
-    <Compile Include="DesktopPlatform.cs" />
-    <Compile Include="DesktopDeviceInfo.cs" />
+    <Compile Include="WindowsPlatform.cs" />
+    <Compile Include="WindowsDeviceInfo.cs" />
     <Compile Include="EditorRenderer.cs" />
     <Compile Include="EntryRenderer.cs" />
     <Compile Include="ExportRendererAttribute.cs" />
@@ -68,7 +70,7 @@
     <Compile Include="Platform.cs" />
     <Compile Include="ProgressBarRenderer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="DesktopBasePlatformServices.cs" />
+    <Compile Include="WindowsBasePlatformServices.cs" />
     <Compile Include="ScrollViewRenderer.cs" />
     <Compile Include="ViewRenderer.cs" />
     <Compile Include="VisualElementChangedEventArgs.cs" />
@@ -77,6 +79,8 @@
     <Compile Include="VisualElementRenderer.cs" />
     <Compile Include="VisualElementTracker.cs" />
     <Compile Include="WindowsExpressionSearch.cs" />
+    <Compile Include="WindowsSerializer.cs" />
+    <Compile Include="WindowsTicker.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\GitHub\Perspex\src\Markup\Perspex.Markup.Xaml\Perspex.Markup.Xaml.csproj">

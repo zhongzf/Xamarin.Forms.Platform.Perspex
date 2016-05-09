@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Xamarin.Forms.Platform.PerspexDesktop
 {
-    internal class DesktopPlatformServices : DesktopBasePlatformServices
+    internal class WindowsPlatformServices : WindowsBasePlatformServices
     {
     }
 }

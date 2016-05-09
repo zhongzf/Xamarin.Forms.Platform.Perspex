@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Xamarin.Forms.Platform.PerspexDesktop
 {
-    internal sealed class DesktopResourcesProvider : ISystemResourcesProvider
+    internal sealed class WindowsResourcesProvider : ISystemResourcesProvider
     {
         public IResourceDictionary GetSystemResources()
         {

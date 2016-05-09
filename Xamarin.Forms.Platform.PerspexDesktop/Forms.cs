@@ -21,8 +21,8 @@ namespace Xamarin.Forms
 
 			Device.OS = TargetPlatform.Other;
 			Device.Idiom = TargetIdiom.Desktop;
-			Device.PlatformServices = new DesktopPlatformServices();
-			Device.Info = new DesktopDeviceInfo();
+			Device.PlatformServices = new WindowsPlatformServices();
+			Device.Info = new WindowsDeviceInfo();
 
 			ExpressionSearch.Default = new WindowsExpressionSearch();
 

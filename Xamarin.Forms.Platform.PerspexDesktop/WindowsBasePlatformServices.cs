@@ -12,9 +12,9 @@ using Perspex.Threading;
 
 namespace Xamarin.Forms.Platform.PerspexDesktop
 {
-	internal abstract class DesktopBasePlatformServices : IPlatformServices
+	internal abstract class WindowsBasePlatformServices : IPlatformServices
 	{
-		public DesktopBasePlatformServices()
+		public WindowsBasePlatformServices()
 		{
 		}
 
@@ -22,7 +22,7 @@ namespace Xamarin.Forms.Platform.PerspexDesktop
         {
             get
             {
-                throw new NotImplementedException();
+                return !Dispatcher.UIThread.CheckAccess();
             }
         }
 
@@ -33,7 +33,7 @@ namespace Xamarin.Forms.Platform.PerspexDesktop
 
         public Ticker CreateTicker()
         {
-            throw new NotImplementedException();
+            return new WindowsTicker();
         }
 
         public Assembly[] GetAssemblies()

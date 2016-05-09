@@ -8,30 +8,11 @@ using System.ComponentModel;
 
 namespace Xamarin.Forms.Platform.PerspexDesktop
 {
-    public class DesktopWindow : Window
+    public class DesktopWindow : DesktopBaseWindow
     {
-        private Application _application;
-        protected Platform Platform { get; private set; }
-
-        protected virtual Platform CreatePlatform()
+        protected override Platform CreatePlatform()
         {
-            return new DesktopPlatform(this);
-        }
-
-        protected void LoadApplication(Application application)
-        {
-            if (application == null)
-                throw new ArgumentNullException("application");
-
-            _application = application;
-            Application.Current = application;
-            Platform = CreatePlatform();
-            Platform.SetPage(Application.Current.MainPage);
-            application.PropertyChanged += OnApplicationPropertyChanged;
-        }
-
-        private void OnApplicationPropertyChanged(object sender, PropertyChangedEventArgs e)
-        {            
+            return new WindowsPlatform(this);
         }
     }
 }

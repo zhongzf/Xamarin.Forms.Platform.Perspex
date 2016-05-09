@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Xamarin.Forms.Platform.PerspexDesktop
 {
-    public class DesktopPlatform : Platform
+    public class WindowsPlatform : Platform
     {
-        public DesktopPlatform(Window window) : base(window)
+        public WindowsPlatform(Window window) : base(window)
 		{
         }
     }

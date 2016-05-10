@@ -9,14 +9,16 @@ using System.Threading.Tasks;
 using Xamarin.Forms.Internals;
 using System.Linq;
 using Perspex.Threading;
+using System.Diagnostics;
+using System.Security.Cryptography;
 
 namespace Xamarin.Forms.Platform.PerspexDesktop
 {
-	internal abstract class WindowsBasePlatformServices : IPlatformServices
-	{
-		public WindowsBasePlatformServices()
-		{
-		}
+    internal abstract class WindowsBasePlatformServices : IPlatformServices
+    {
+        public WindowsBasePlatformServices()
+        {
+        }
 
         public bool IsInvokeRequired
         {
@@ -73,7 +75,11 @@ namespace Xamarin.Forms.Platform.PerspexDesktop
 
         public string GetMD5Hash(string input)
         {
-            throw new NotImplementedException();
+            MD5 md5 = new MD5CryptoServiceProvider();
+            byte[] bytes_md5_in = UTF8Encoding.Default.GetBytes(input);
+            byte[] bytes_md5_out = md5.ComputeHash(bytes_md5_in);
+            string output = BitConverter.ToString(bytes_md5_out);
+            return output;
         }
 
         public double GetNamedSize(NamedSize size, Type targetElementType, bool useOldSizes)
@@ -81,24 +87,65 @@ namespace Xamarin.Forms.Platform.PerspexDesktop
             return size.GetFontSize();
         }
 
-        public Task<Stream> GetStreamAsync(Uri uri, CancellationToken cancellationToken)
+        public async Task<Stream> GetStreamAsync(Uri uri, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            using (var client = new HttpClient())
+            {
+                HttpResponseMessage streamResponse = await client.GetAsync(uri.AbsoluteUri).ConfigureAwait(false);
+                return streamResponse.IsSuccessStatusCode ? await streamResponse.Content.ReadAsStreamAsync().ConfigureAwait(false) : null;
+            }
         }
 
         public IIsolatedStorageFile GetUserStoreForApplication()
         {
-            throw new NotImplementedException();
+            return new WindowsIsolatedStorage(AppDomain.CurrentDomain.BaseDirectory);
         }
 
         public void OpenUriAction(Uri uri)
         {
-            throw new NotImplementedException();
+            Process.Start(uri.AbsoluteUri);
         }
 
         public void StartTimer(TimeSpan interval, Func<bool> callback)
         {
-            throw new NotImplementedException();
+            var timer = new DispatcherTimer { Interval = interval };
+            timer.Start();
+            timer.Tick += (sender, args) =>
+            {
+                bool result = callback();
+                if (!result)
+                    timer.Stop();
+            };
         }
+
+        //internal class WindowsTimer : ITimer
+        //{
+        //    readonly Timer _timer;
+
+        //    public WindowsTimer(Timer timer)
+        //    {
+        //        _timer = timer;
+        //    }
+
+        //    public void Change(int dueTime, int period)
+        //    {
+        //        _timer.Change(dueTime, period);
+        //    }
+
+        //    public void Change(long dueTime, long period)
+        //    {
+        //        Change(TimeSpan.FromMilliseconds(dueTime), TimeSpan.FromMilliseconds(period));
+        //    }
+
+        //    public void Change(TimeSpan dueTime, TimeSpan period)
+        //    {
+        //        _timer.Change(dueTime, period);
+        //    }
+
+        //    public void Change(uint dueTime, uint period)
+        //    {
+        //        Change(TimeSpan.FromMilliseconds(dueTime), TimeSpan.FromMilliseconds(period));
+        //    }
+        //}
     }
 }

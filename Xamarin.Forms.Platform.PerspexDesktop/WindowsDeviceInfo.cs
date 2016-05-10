@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Xamarin.Forms.Platform.PerspexDesktop
 {
+    // TODO:
     internal class WindowsDeviceInfo : DeviceInfo
     {
         public override Size PixelScreenSize

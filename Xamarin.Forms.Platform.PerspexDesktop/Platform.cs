@@ -12,6 +12,7 @@ namespace Xamarin.Forms.Platform.PerspexDesktop
     {
         private Window _window;
         Page _currentPage;
+        Rectangle _bounds;
 
         internal Platform(Window window)
         {
@@ -23,6 +24,18 @@ namespace Xamarin.Forms.Platform.PerspexDesktop
             _container = new Canvas { };
 
             _window.Content = _container;
+
+            _container.PropertyChanged += _container_PropertyChanged;
+
+            UpdateBounds();
+        }
+
+        private void _container_PropertyChanged(object sender, Perspex.PerspexPropertyChangedEventArgs e)
+        {
+            if (e.Property == Perspex.Layout.Layoutable.WidthProperty || e.Property == Perspex.Layout.Layoutable.HeightProperty || e.Property == Perspex.Layout.Layoutable.BoundsProperty)
+            {
+                OnRendererSizeChanged(sender, e);
+            }
         }
 
         public IReadOnlyList<Page> ModalStack
@@ -131,6 +144,50 @@ namespace Xamarin.Forms.Platform.PerspexDesktop
             IVisualElementRenderer renderer = Registrar.Registered.GetHandler<IVisualElementRenderer>(element.GetType()) ?? new DefaultRenderer();
             renderer.SetElement(element);
             return renderer;
+        }
+        #endregion
+
+        #region Layout
+        internal virtual Rectangle WindowBounds
+        {
+            get { return _bounds; }
+        }
+
+        void UpdateBounds()
+        {
+            _bounds = new Rectangle(0, 0, _window.ClientSize.Width, _window.ClientSize.Height);
+        }
+
+        internal void UpdatePageSizes()
+        {
+            Rectangle bounds = WindowBounds;
+            if (bounds.IsEmpty)
+                return;
+            //foreach (Page root in _navModel.Roots)
+            //{
+            //    root.Layout(bounds);
+            //    IVisualElementRenderer renderer = GetRenderer(root);
+            //    if (renderer != null)
+            //    {
+            //        renderer.ContainerElement.Width = _container.ActualWidth;
+            //        renderer.ContainerElement.Height = _container.ActualHeight;
+            //    }
+            //}
+            // currentPage
+            Page root = _currentPage;
+            root.Layout(bounds);
+            IVisualElementRenderer renderer = GetRenderer(root);
+            if (renderer != null)
+            {
+                renderer.ContainerElement.Width = _container.Bounds.Width;
+                renderer.ContainerElement.Height = _container.Bounds.Height;
+            }
+        }
+
+        void OnRendererSizeChanged(object sender, EventArgs sizeChangedEventArgs)
+        {
+            UpdateBounds();
+            UpdatePageSizes();
         }
         #endregion
 

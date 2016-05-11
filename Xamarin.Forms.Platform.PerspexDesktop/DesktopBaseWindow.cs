@@ -55,7 +55,10 @@ namespace Xamarin.Forms.Platform.PerspexDesktop
 
         void OnApplicationResuming(object sender, object e)
         {
-            Application.Current.SendResume();
+            if (Application.Current != null)
+            {
+                Application.Current.SendResume();
+            }
         }
 
         async void OnApplicationSuspending(object sender, object e)

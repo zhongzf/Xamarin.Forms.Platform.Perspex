@@ -16,15 +16,15 @@ namespace XamarinFormsPerspexDemo
         {
             this.Activated += MainWindow_Activated;
             //this.AttachDevTools();
+        }
+
+        private void MainWindow_Activated(object sender, EventArgs e)
+        {
             if (!loaded)
             {
                 LoadApplication(new XamarinFormsApp.App());
                 loaded = true;
             }
-        }
-
-        private void MainWindow_Activated(object sender, EventArgs e)
-        {
         }
     }
 }

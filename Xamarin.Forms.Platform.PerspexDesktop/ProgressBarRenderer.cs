@@ -18,17 +18,24 @@ namespace Xamarin.Forms.Platform.PerspexDesktop
                     SetNativeControl(progressBar);
                 }
 
-                Control.Value = e.NewElement.Progress;
+                Control.Value = ConvertProgressValue(e.NewElement.Progress);
             }
         }
 
+        protected double ConvertProgressValue(double progress)
+        {
+            var value = progress * 100;
+            return value;
+        }
 
         protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             base.OnElementPropertyChanged(sender, e);
 
             if (e.PropertyName == ProgressBar.ProgressProperty.PropertyName)
-                Control.Value = Element.Progress;
+            {
+                Control.Value = ConvertProgressValue(Element.Progress);
+            }
         }
 
         private void ProgressBar_PropertyChanged(object sender, Perspex.PerspexPropertyChangedEventArgs e)

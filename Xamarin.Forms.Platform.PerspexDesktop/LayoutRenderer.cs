@@ -13,13 +13,13 @@ namespace Xamarin.Forms.Platform.PerspexDesktop
             if (e.OldElement != null)
             {
                 //SizeChanged -= OnSizeChanged;
-                PropertyChanged += LayoutRenderer_PropertyChanged;
+                PropertyChanged -= LayoutRenderer_PropertyChanged;
             }
 
             if (e.NewElement != null)
             {
                 //SizeChanged += OnSizeChanged;
-                PropertyChanged -= LayoutRenderer_PropertyChanged;
+                PropertyChanged += LayoutRenderer_PropertyChanged;
 
                 UpdateClipToBounds();
             }

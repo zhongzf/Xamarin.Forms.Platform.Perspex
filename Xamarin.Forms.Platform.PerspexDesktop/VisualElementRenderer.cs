@@ -4,6 +4,7 @@ using Perspex;
 using Perspex.Controls;
 using Perspex.Animation;
 using Perspex.Interactivity;
+using Xamarin.Forms;
 
 namespace Xamarin.Forms.Platform.PerspexDesktop
 {
@@ -29,9 +30,7 @@ namespace Xamarin.Forms.Platform.PerspexDesktop
         protected bool AutoPackage { get; set; } = true;
         VisualElementPackager Packager { get; set; }
 
-
         EventHandler<VisualElementChangedEventArgs> _elementChangedHandlers;
-
         event EventHandler<VisualElementChangedEventArgs> IVisualElementRenderer.ElementChanged
         {
             add
@@ -89,24 +88,18 @@ namespace Xamarin.Forms.Platform.PerspexDesktop
             Dispose(true);
         }
 
-        public virtual SizeRequest GetDesiredSize(double widthConstraint, double heightConstraint)
-        {
-            if (Children.Count == 0)
-                return new SizeRequest();
-
-            var constraint = new Perspex.Size(widthConstraint, heightConstraint);
-            TNativeElement child = Control;
-
-            child.Measure(constraint);
-            var result = new Size(Math.Ceiling(child.DesiredSize.Width), Math.Ceiling(child.DesiredSize.Height));
-
-            return new SizeRequest(result);
-        }
-
         #region Effect
         public void RegisterEffect(Effect effect)
         {
-            throw new NotImplementedException();
+            var platformEffect = effect as PlatformEffect;
+            if (platformEffect != null)
+                OnRegisterEffect(platformEffect);
+        }
+
+        protected virtual void OnRegisterEffect(PlatformEffect effect)
+        {
+            effect.Container = this;
+            effect.Control = Control;
         }
         #endregion
 
@@ -166,7 +159,16 @@ namespace Xamarin.Forms.Platform.PerspexDesktop
 
             OnElementChanged(new ElementChangedEventArgs<TElement>(oldElement, Element));
 
-            // TODO: Effect
+            // Effect
+            var controller = (IElementController)oldElement;
+            if (controller != null && controller.EffectControlProvider == this)
+            {
+                controller.EffectControlProvider = null;
+            }
+
+            controller = element;
+            if (controller != null)
+                controller.EffectControlProvider = this;
         }
 
         protected void SetNativeControl(TNativeElement control)
@@ -184,6 +186,8 @@ namespace Xamarin.Forms.Platform.PerspexDesktop
                 oldControl.LostFocus -= OnControlLostFocus;
             }
 
+            UpdateTracker();
+
             if (control == null)
                 return;
 
@@ -199,6 +203,9 @@ namespace Xamarin.Forms.Platform.PerspexDesktop
             control.LostFocus += OnControlLostFocus;
 
             UpdateBackgroundColor();
+
+            if (Element != null && !string.IsNullOrEmpty(Element.AutomationId))
+                SetAutomationId(Element.AutomationId);
         }
 
         private void Control_AttachedToVisualTree(object sender, VisualTreeAttachmentEventArgs e)
@@ -293,6 +300,20 @@ namespace Xamarin.Forms.Platform.PerspexDesktop
         #endregion
 
         #region Layout
+        public virtual SizeRequest GetDesiredSize(double widthConstraint, double heightConstraint)
+        {
+            if (Children.Count == 0)
+                return new SizeRequest();
+
+            var constraint = new Perspex.Size(widthConstraint, heightConstraint);
+            TNativeElement child = Control;
+
+            child.Measure(constraint);
+            var result = new Size(Math.Ceiling(child.DesiredSize.Width), Math.Ceiling(child.DesiredSize.Height));
+
+            return new SizeRequest(result);
+        }
+
         protected override Perspex.Size MeasureOverride(Perspex.Size availableSize)
         {
             if (Element == null || availableSize.Width * availableSize.Height == 0)
@@ -362,6 +383,16 @@ namespace Xamarin.Forms.Platform.PerspexDesktop
 
             return finalSize;
         }
+        #endregion
+
+        #region Automation
+
+        protected virtual void SetAutomationId(string id)
+        {
+            //SetValue(AutomationProperties.AutomationIdProperty, id);
+            // TODO: Automation
+        }
+
         #endregion
     }
 }

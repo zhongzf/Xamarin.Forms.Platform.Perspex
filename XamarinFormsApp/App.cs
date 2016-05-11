@@ -28,7 +28,7 @@ namespace XamarinFormsApp
                 HorizontalTextAlignment = TextAlignment.Center
             };
             container = new StackLayout();
-            progressBar= new ProgressBar { Progress = 30 };
+            progressBar = new ProgressBar { Progress = 0.30 };
             // The root page of your application
             MainPage = new ContentPage
             {
@@ -46,7 +46,6 @@ namespace XamarinFormsApp
                         },
                         new StackLayout
                         {
-                            Padding = new Thickness(10, 20, 30, 40),
                             Orientation = StackOrientation.Horizontal,
                             HorizontalOptions = LayoutOptions.Center,
                             Children =
@@ -62,7 +61,7 @@ namespace XamarinFormsApp
                             {
                                 Children =
                                 {
-                                    progressBar,  
+                                    progressBar,
                                     container
                                 }
                             }
@@ -89,7 +88,7 @@ namespace XamarinFormsApp
 
         private void B_Clicked(object sender, EventArgs e)
         {
-            progressBar.Progress+=10;
+            progressBar.Progress += 0.10;
         }
 
         protected override void OnStart()

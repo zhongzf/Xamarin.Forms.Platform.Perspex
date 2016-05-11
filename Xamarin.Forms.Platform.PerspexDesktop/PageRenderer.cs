@@ -5,7 +5,7 @@ using System.Collections.ObjectModel;
 
 namespace Xamarin.Forms.Platform.PerspexDesktop
 {
-    public class PageRenderer : VisualElementRenderer<Page, Perspex.Controls.ContentControl>
+    public class PageRenderer : VisualElementRenderer<Page, Perspex.Controls.StackPanel>
     {
         bool _disposed;
 
@@ -50,7 +50,7 @@ namespace Xamarin.Forms.Platform.PerspexDesktop
                     AttachedToVisualTree += PageRenderer_AttachedToVisualTree;
                     DetachedFromVisualTree += PageRenderer_DetachedFromVisualTree;
 
-                    Tracker = new BackgroundTracker<ContentControl>(TemplatedControl.BackgroundProperty);
+                    Tracker = new BackgroundTracker<Perspex.Controls.StackPanel>(TemplatedControl.BackgroundProperty);
                 }
 
                 if (_loaded)

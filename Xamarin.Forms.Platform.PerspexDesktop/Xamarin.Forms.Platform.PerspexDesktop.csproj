@@ -51,6 +51,7 @@
     <Compile Include="ConvertExtensions.cs" />
     <Compile Include="DefaultRenderer.cs" />
     <Compile Include="DesktopBaseWindow.cs" />
+    <Compile Include="PlatformEffect.cs" />
     <Compile Include="WindowsIsolatedStorage.cs" />
     <Compile Include="WindowsPlatformServices.cs" />
     <Compile Include="WindowsResourcesProvider.cs" />

@@ -46,6 +46,7 @@ namespace XamarinFormsApp
                         },
                         new StackLayout
                         {
+                            Padding = new Thickness(10, 20, 30, 40),
                             Orientation = StackOrientation.Horizontal,
                             HorizontalOptions = LayoutOptions.Center,
                             Children =
@@ -54,7 +55,7 @@ namespace XamarinFormsApp
                                 button
                             }
                         },
-                        new Entry { Text = "default test" },
+                        new Entry { Text = "default test", TextColor = Color.Black },
                         new ScrollView
                         {
                             Content = new StackLayout

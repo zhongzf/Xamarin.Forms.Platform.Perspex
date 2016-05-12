@@ -51,6 +51,10 @@
     <Compile Include="ConvertExtensions.cs" />
     <Compile Include="DefaultRenderer.cs" />
     <Compile Include="DesktopBaseWindow.cs" />
+    <Compile Include="LayoutExtensions.cs" />
+    <Compile Include="ListViewRenderer.cs" />
+    <Compile Include="NativeViewWrapper.cs" />
+    <Compile Include="NativeViewWrapperRenderer.cs" />
     <Compile Include="PlatformEffect.cs" />
     <Compile Include="WindowsIsolatedStorage.cs" />
     <Compile Include="WindowsPlatformServices.cs" />

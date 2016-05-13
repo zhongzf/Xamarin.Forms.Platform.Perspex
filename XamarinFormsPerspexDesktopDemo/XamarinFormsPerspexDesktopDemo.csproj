@@ -143,6 +143,22 @@
       <Project>{b05126e4-e09d-47fb-8cd0-c2a7d5a6d72d}</Project>
       <Name>Xamarin.Forms.Platform</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Prism\Source\Prism\Prism.csproj">
+      <Project>{e6c50355-d01e-4caa-884d-d7929861315c}</Project>
+      <Name>Prism</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Prism\Source\Xamarin\Prism.Forms\Prism.Forms.csproj">
+      <Project>{f6e08495-1f4d-4497-bb2d-4a0a78ff49cb}</Project>
+      <Name>Prism.Forms</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Prism\Source\Xamarin\Prism.Unity.Forms\Prism.Unity.Forms.csproj">
+      <Project>{79ebb8f1-5d80-4ea1-9100-ebdc1ec51cb7}</Project>
+      <Name>Prism.Unity.Forms</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PrismUnityDemoApp\PrismUnityDemoApp\PrismUnityDemoApp.csproj">
+      <Project>{ac4b3dcd-19a0-4857-9bb1-243c1fe07ba6}</Project>
+      <Name>PrismUnityDemoApp</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Xamarin.Forms.Platform.PerspexDesktop\Xamarin.Forms.Platform.PerspexDesktop.csproj">
       <Project>{5d79dc0b-29b2-442a-a9de-fa7cfa5da887}</Project>
       <Name>Xamarin.Forms.Platform.PerspexDesktop</Name>

@@ -10,19 +10,22 @@ namespace Xamarin.Forms
 {
 	public static class Forms
 	{
-		const string LogFormat = "[{0}] {1}";
+        static DesktopWindow _window;
+
+        const string LogFormat = "[{0}] {1}";
 
 		static bool s_isInitialized;
 
-        public static void Init()
+        public static void Init(DesktopWindow window)
 		{
 			if (s_isInitialized)
 				return;
 
+            _window = window;
 			Device.OS = TargetPlatform.Other;
 			Device.Idiom = TargetIdiom.Desktop;
 			Device.PlatformServices = new WindowsPlatformServices();
-			Device.Info = new WindowsDeviceInfo();
+			Device.Info = new WindowsDeviceInfo(window);
 
 			ExpressionSearch.Default = new WindowsExpressionSearch();
 

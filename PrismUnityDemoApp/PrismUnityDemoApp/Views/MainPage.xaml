@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="PrismUnityDemoApp.Views.MainPage"
+             Title="MainPage">
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <Color x:Key="textColor">Red</Color>
+      <x:String x:Key="currentDateTime">Not actually a DateTime</x:String>
+      <Style x:Key="buttonStyle" TargetType="Button">
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+        <Setter Property="BorderWidth" Value="3" />
+        <Setter Property="TextColor" Value="Red" />
+        <Setter Property="FontSize" Value="Large" />
+      </Style>
+      <Style TargetType="Button">
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+        <Setter Property="BorderWidth" Value="5" />
+        <Setter Property="TextColor" Value="Green" />
+        <Setter Property="FontSize" Value="Large" />
+      </Style>
+    </ResourceDictionary>
+  </ContentPage.Resources>
+
+  <ScrollView>
+    <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+      <Button x:Name="button" Text="AnimationButton" Clicked="OnButtonClicked"></Button>
+      <Entry Placeholder="enter name" AnchorX="0">
+        <Entry.Triggers>
+          <Trigger TargetType="Entry" Property="IsFocused" Value="True">
+            <Setter Property="Scale" Value="1.5" />
+          </Trigger>
+        </Entry.Triggers>
+      </Entry>
+      <Label Text="{Binding Title}" />
+      <Label TextColor="{StaticResource textColor}">
+        <OnPlatform x:TypeArguments="x:String"
+                    iOS="This is an iOS device or Other device"
+                    Android="This is an Android device"
+                    WinPhone="This is a Windows device"/>
+      </Label>
+      <Button Style="{StaticResource buttonStyle}" Text="Test"></Button>
+      <Label Text="{x:Static sys:Environment.NewLine}" TextColor="{StaticResource textColor}">
+      </Label>
+      <Button Text="Test2"></Button>
+      <Label VerticalOptions="CenterAndExpand" HorizontalTextAlignment="Center" FontSize="Medium">
+        <Label.FormattedText>
+          <FormattedString>
+            <Span Text="Three lines of text" />
+            <Span Text="{x:Static sys:Environment.NewLine}" />
+            <Span Text="separated by" />
+            <Span Text="{x:Static sys:Environment.NewLine}" />
+            <Span Text="Environment.NewLine" FontSize="Medium" FontAttributes="Italic" />
+            <Span Text=" strings" />
+          </FormattedString>
+        </Label.FormattedText>
+      </Label>
+      <Label Text="{StaticResource currentDateTime}"></Label>
+      <Label Text="{DynamicResource currentDateTime}"></Label>
+      <StackLayout>
+        <Label Text="Opacity Binding Demo" FontSize="Large" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" BindingContext="{x:Reference slider}" Opacity="{Binding Value}" />
+        <Slider x:Name="slider" VerticalOptions="CenterAndExpand" />
+      </StackLayout>
+      <StackLayout>
+        <Label Text="Opacity Binding Demo" FontSize="Large" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" Opacity="{Binding Value, Source={x:Reference slider2}}" />
+        <Slider x:Name="slider2" VerticalOptions="CenterAndExpand" />
+      </StackLayout>
+      <Picker Title="Font Size">
+        <Picker.Items>
+          <x:String>Font Size = 8</x:String>
+          <x:String>Font Size = 10</x:String>
+          <x:String>Font Size = 12</x:String>
+          <x:String>Font Size = 14</x:String>
+          <x:String>Font Size = 16</x:String>
+          <x:String>Font Size = 20</x:String>
+          <x:String>Font Size = 24</x:String>
+          <x:String>Font Size = 30</x:String>
+        </Picker.Items>
+      </Picker>
+      <ListView x:Name="listView" SelectedItem="{Binding Source={x:Reference boxView}, Path=Color, Mode=TwoWay}">
+        <ListView.ItemsSource>
+          <x:Array Type="{x:Type Color}">
+            <x:Static Member="Color.Aqua" />
+            <x:Static Member="Color.Black" />
+            <x:Static Member="Color.Blue" />
+            <x:Static Member="Color.Fuchsia" />
+            <x:Static Member="Color.Gray" />
+            <x:Static Member="Color.Green" />
+            <x:Static Member="Color.Lime" />
+            <x:Static Member="Color.Maroon" />
+            <Color>Navy</Color>
+            <Color>Olive</Color>
+            <Color>Pink</Color>
+            <Color>Purple</Color>
+            <Color>Red</Color>
+            <Color>Silver</Color>
+            <Color>Teal</Color>
+            <Color>White</Color>
+            <Color>Yellow</Color>
+          </x:Array>
+        </ListView.ItemsSource>
+      </ListView>
+      <!---->
+      <BoxView x:Name="boxView" Color="Lime" HeightRequest="100" />
+      <!--<Image Source="https://developer.xamarin.com/demo/IMG_3256.JPG" />-->
+    </StackLayout>
+  </ScrollView>
+</ContentPage>

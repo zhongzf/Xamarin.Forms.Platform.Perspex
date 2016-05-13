@@ -9,6 +9,13 @@ namespace Xamarin.Forms.Platform.PerspexDesktop
     // TODO:
     internal class WindowsDeviceInfo : DeviceInfo
     {
+        DesktopWindow _window;
+
+        public WindowsDeviceInfo(DesktopWindow window)
+        {
+            _window = window;
+        }
+
         public override Size PixelScreenSize
         {
             get
@@ -21,7 +28,8 @@ namespace Xamarin.Forms.Platform.PerspexDesktop
         {
             get
             {
-                throw new NotImplementedException();
+                var windowSize = _window.Bounds;
+                return new Size(windowSize.Width, windowSize.Height);
             }
         }
 

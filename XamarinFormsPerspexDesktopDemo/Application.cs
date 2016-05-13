@@ -22,8 +22,6 @@ namespace XamarinFormsPerspexDemo
             var baseLight = (IStyle)loader.Load(
                 new Uri("resm:Perspex.Themes.Default.Accents.BaseLight.xaml?assembly=Perspex.Themes.Default"));
             Styles.Add(baseLight);
-
-            Forms.Init();
         }
     }
 }

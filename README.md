@@ -12,3 +12,9 @@ Repository: https://github.com/xamarin/Xamarin.Forms
 A multi-platform .NET UI framework. It can run on Windows, Linux, Mac OS X, iOS and Android.
 
 Repository: https://github.com/Perspex/Perspex
+
+
+# Prism
+Prism is a framework for building loosely coupled, maintainable, and testable XAML applications in WPF, Windows 10 UWP, and Xamarin Forms.
+
+Repository: https://github.com/PrismLibrary/Prism

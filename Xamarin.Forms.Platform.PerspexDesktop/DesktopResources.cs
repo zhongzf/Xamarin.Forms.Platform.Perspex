@@ -23,6 +23,7 @@ namespace Xamarin.Forms.Platform.PerspexDesktop
                 _defaultResources.Add("TextBoxButtonBackgroundThemeBrush", Color.White.ToBrush());
                 _defaultResources.Add("SystemControlBackgroundChromeBlackMediumBrush", Color.White.ToBrush());
 
+                // TODO: read default theme.
                 _defaultResources.Add("ButtonBackgroundThemeBrush", Color.Silver.ToBrush());
                 _defaultResources.Add("ButtonBorderThemeBrush", Color.Gray.ToBrush());
                 _defaultResources.Add("DefaultTextForegroundThemeBrush", Color.Black.ToBrush());

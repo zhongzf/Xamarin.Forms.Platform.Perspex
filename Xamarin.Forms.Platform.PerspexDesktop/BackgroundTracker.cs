@@ -1,5 +1,7 @@
 ﻿using Perspex;
 using Perspex.Controls;
+using Perspex.Media;
+using Perspex.Media.Imaging;
 using System;
 using System.ComponentModel;
 
@@ -48,12 +50,8 @@ namespace Xamarin.Forms.Platform.PerspexDesktop
 			string backgroundImage = Element.BackgroundImage;
 			if (backgroundImage != null)
 			{
-                // TODO: backgroundImage
-                //Uri uri;
-                //if (!Uri.TryCreate(backgroundImage, UriKind.RelativeOrAbsolute, out uri) || !uri.IsAbsoluteUri)
-                //	uri = new Uri("ms-appx:///" + backgroundImage);
-
-                //element.SetValue(_backgroundProperty, new ImageBrush { ImageSource = new BitmapImage(uri) });
+                // backgroundImage
+                element.SetValue(_backgroundProperty, new ImageBrush(new Bitmap(backgroundImage)));
             }
             else
 			{

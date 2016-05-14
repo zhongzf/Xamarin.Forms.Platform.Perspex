@@ -3,7 +3,7 @@ using System.ComponentModel;
 
 namespace Xamarin.Forms.Platform.PerspexDesktop
 {
-    public class SwitchRenderer : ViewRenderer<Switch, Perspex.Controls.CheckBox>
+    public class SwitchRenderer : ViewRenderer<Switch, Perspex.Controls.Primitives.ToggleButton>
 	{
 		protected override void OnElementChanged(ElementChangedEventArgs<Switch> e)
 		{
@@ -13,12 +13,8 @@ namespace Xamarin.Forms.Platform.PerspexDesktop
 			{
 				if (Control == null)
 				{
-					var control = new Perspex.Controls.CheckBox();
-                    //control.Toggled += OnNativeToggled;
+					var control = new Perspex.Controls.Primitives.ToggleButton();
                     control.PropertyChanged += OnPropertyChanged;
-					//control.ClearValue(ToggleSwitch.OnContentProperty);
-					//control.ClearValue(ToggleSwitch.OffContentProperty);
-
 					SetNativeControl(control);
 				}
 
@@ -43,7 +39,6 @@ namespace Xamarin.Forms.Platform.PerspexDesktop
                 OnNativeToggled(sender, e);
             }
         }
-
 
         void OnNativeToggled(object sender, EventArgs routedEventArgs)
 		{

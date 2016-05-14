@@ -1,12 +1,17 @@
-﻿using Perspex.Interactivity;
+﻿using Perspex.Controls;
+using Perspex.Interactivity;
 using Perspex.Media;
+using Perspex.Media.Imaging;
 using System;
 using System.ComponentModel;
+using Perspex.Layout;
 
 namespace Xamarin.Forms.Platform.PerspexDesktop
 {
     public class ButtonRenderer : ViewRenderer<Button, Perspex.Controls.Button>
     {
+        bool _fontApplied;
+
         protected override void OnElementChanged(ElementChangedEventArgs<Button> e)
         {
             base.OnElementChanged(e);
@@ -97,7 +102,7 @@ namespace Xamarin.Forms.Platform.PerspexDesktop
         void UpdateBorderRadius()
         {
             var borderRadius = Element.BorderRadius;
-            // TODO:
+            // TODO: BorderRadius
         }
 
         void UpdateBorderWidth()
@@ -117,11 +122,83 @@ namespace Xamarin.Forms.Platform.PerspexDesktop
                 Control.Content = text;
                 return;
             }
+
+            var image = new Perspex.Controls.Image
+            {
+                Source = new Bitmap(elementImage.File),
+                Width = 30.0,
+                Height = 30.0,
+                VerticalAlignment = VerticalAlignment.Center,
+                HorizontalAlignment = HorizontalAlignment.Center
+            };
+
+            // No text, just the image
+            if (string.IsNullOrEmpty(text))
+            {
+                Control.Content = image;
+                return;
+            }
+
+            // Both image and text, so we need to build a container for them
+            var layout = Element.ContentLayout;
+            var container = new StackPanel();
+            var textBlock = new TextBlock
+            {
+                Text = text,
+                VerticalAlignment = VerticalAlignment.Center,
+                HorizontalAlignment = HorizontalAlignment.Center
+            };
+
+            var spacing = layout.Spacing;
+
+            container.HorizontalAlignment = HorizontalAlignment.Center;
+            container.VerticalAlignment = VerticalAlignment.Center;
+
+            switch (layout.Position)
+            {
+                case Button.ButtonContentLayout.ImagePosition.Top:
+                    container.Orientation = Orientation.Vertical;
+                    image.Margin = new Perspex.Thickness(0, 0, 0, spacing);
+                    container.Children.Add(image);
+                    container.Children.Add(textBlock);
+                    break;
+                case Button.ButtonContentLayout.ImagePosition.Bottom:
+                    container.Orientation = Orientation.Vertical;
+                    image.Margin = new Perspex.Thickness(0, spacing, 0, 0);
+                    container.Children.Add(textBlock);
+                    container.Children.Add(image);
+                    break;
+                case Button.ButtonContentLayout.ImagePosition.Right:
+                    container.Orientation = Orientation.Horizontal;
+                    image.Margin = new Perspex.Thickness(spacing, 0, 0, 0);
+                    container.Children.Add(textBlock);
+                    container.Children.Add(image);
+                    break;
+                default:
+                    // Defaults to image on the left
+                    container.Orientation = Orientation.Horizontal;
+                    image.Margin = new Perspex.Thickness(0, 0, spacing, 0);
+                    container.Children.Add(image);
+                    container.Children.Add(textBlock);
+                    break;
+            }
+
+            Control.Content = container;
+
         }
 
         void UpdateFont()
         {
-            // TODO:
+            if (Control == null || Element == null)
+                return;
+
+            if (Element.Font == Font.Default && !_fontApplied)
+                return;
+
+            Font fontToApply = Element.Font == Font.Default ? Font.SystemFontOfSize(NamedSize.Medium) : Element.Font;
+
+            Control.ApplyFont(fontToApply);
+            _fontApplied = true;
         }
 
         void UpdateTextColor()
@@ -129,6 +206,5 @@ namespace Xamarin.Forms.Platform.PerspexDesktop
             var textColor = Element.TextColor;
             Control.Foreground = textColor.ToBrush();
         }
-
     }
 }

@@ -1,52 +1,51 @@
 ﻿using Perspex.Controls;
+using Perspex.Controls.Primitives;
+using Perspex.Media;
 using System;
 
 namespace Xamarin.Forms.Platform.PerspexDesktop
 {
     public static class FontExtensions
 	{
-        /*
-		public static void ApplyFont(this Control self, Font font)
+		public static void ApplyFont(this TemplatedControl self, Font font)
 		{
 			self.FontSize = font.UseNamedSize ? font.NamedSize.GetFontSize() : font.FontSize;
-			self.FontFamily = !string.IsNullOrEmpty(font.FontFamily) ? new FontFamily(font.FontFamily) : (FontFamily)WApplication.Current.Resources["ContentControlThemeFontFamily"];
+			self.FontFamily = !string.IsNullOrEmpty(font.FontFamily) ? font.FontFamily : (string)DesktopResources.GetDefault("ContentControlThemeFontFamily");
 			self.FontStyle = font.FontAttributes.HasFlag(FontAttributes.Italic) ? FontStyle.Italic : FontStyle.Normal;
-			self.FontWeight = font.FontAttributes.HasFlag(FontAttributes.Bold) ? FontWeights.Bold : FontWeights.Normal;
+			self.FontWeight = font.FontAttributes.HasFlag(FontAttributes.Bold) ? FontWeight.Bold : FontWeight.Normal;
 		}
 
 		public static void ApplyFont(this TextBlock self, Font font)
 		{
 			self.FontSize = font.UseNamedSize ? font.NamedSize.GetFontSize() : font.FontSize;
-			self.FontFamily = !string.IsNullOrEmpty(font.FontFamily) ? new FontFamily(font.FontFamily) : (FontFamily)WApplication.Current.Resources["ContentControlThemeFontFamily"];
-			self.FontStyle = font.FontAttributes.HasFlag(FontAttributes.Italic) ? FontStyle.Italic : FontStyle.Normal;
-			self.FontWeight = font.FontAttributes.HasFlag(FontAttributes.Bold) ? FontWeights.Bold : FontWeights.Normal;
-		}
+            self.FontFamily = !string.IsNullOrEmpty(font.FontFamily) ? font.FontFamily : (string)DesktopResources.GetDefault("ContentControlThemeFontFamily");
+            self.FontStyle = font.FontAttributes.HasFlag(FontAttributes.Italic) ? FontStyle.Italic : FontStyle.Normal;
+            self.FontWeight = font.FontAttributes.HasFlag(FontAttributes.Bold) ? FontWeight.Bold : FontWeight.Normal;
+        }
 
-		public static void ApplyFont(this TextElement self, Font font)
-		{
-			self.FontSize = font.UseNamedSize ? font.NamedSize.GetFontSize() : font.FontSize;
-			self.FontFamily = !string.IsNullOrEmpty(font.FontFamily) ? new FontFamily(font.FontFamily) : (FontFamily)WApplication.Current.Resources["ContentControlThemeFontFamily"];
-			self.FontStyle = font.FontAttributes.HasFlag(FontAttributes.Italic) ? FontStyle.Italic : FontStyle.Normal;
-			self.FontWeight = font.FontAttributes.HasFlag(FontAttributes.Bold) ? FontWeights.Bold : FontWeights.Normal;
-		}
-
-		internal static void ApplyFont(this Control self, IFontElement element)
+        internal static void ApplyFont(this TemplatedControl self, IFontElement element)
 		{
 			self.FontSize = element.FontSize;
-			self.FontFamily = !string.IsNullOrEmpty(element.FontFamily) ? new FontFamily(element.FontFamily) : (FontFamily)WApplication.Current.Resources["ContentControlThemeFontFamily"];
+			self.FontFamily = !string.IsNullOrEmpty(element.FontFamily) ? element.FontFamily : (string)DesktopResources.GetDefault("ContentControlThemeFontFamily");
 			self.FontStyle = element.FontAttributes.HasFlag(FontAttributes.Italic) ? FontStyle.Italic : FontStyle.Normal;
-			self.FontWeight = element.FontAttributes.HasFlag(FontAttributes.Bold) ? FontWeights.Bold : FontWeights.Normal;
+			self.FontWeight = element.FontAttributes.HasFlag(FontAttributes.Bold) ? FontWeight.Bold : FontWeight.Normal;
 		}
-        */
+        
+        internal static void ApplyFont(this TextBlock self, IFontElement element)
+        {
+            self.FontSize = element.FontSize;
+            self.FontFamily = !string.IsNullOrEmpty(element.FontFamily) ? element.FontFamily : (string)DesktopResources.GetDefault("ContentControlThemeFontFamily");
+            self.FontStyle = element.FontAttributes.HasFlag(FontAttributes.Italic) ? FontStyle.Italic : FontStyle.Normal;
+            self.FontWeight = element.FontAttributes.HasFlag(FontAttributes.Bold) ? FontWeight.Bold : FontWeight.Normal;
+        }
 
-		internal static double GetFontSize(this NamedSize size)
+        internal static double GetFontSize(this NamedSize size)
 		{
 			// These are values pulled from the mapped sizes on Windows Phone, WinRT has no equivalent sizes, only intents.
 			switch (size)
 			{
 				case NamedSize.Default:
-                    //return (double)Application.Current.Resources["ControlContentThemeFontSize"];
-                    return 22.667;
+                    return (double)DesktopResources.GetDefault("ControlContentThemeFontSize");
 				case NamedSize.Micro:
 					return 18.667 - 3;
 				case NamedSize.Small:

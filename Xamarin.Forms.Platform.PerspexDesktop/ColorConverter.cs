@@ -11,8 +11,8 @@ namespace Xamarin.Forms.Platform.PerspexDesktop
             var color = (Color)value;
             var defaultColorKey = (string)parameter;
 
-            // TODO: Resources
-            IBrush defaultBrush = defaultColorKey != null ? (IBrush)Application.Current.Resources[defaultColorKey] : (IBrush)(new SolidColorBrush(Colors.Transparent));
+            // Resources
+            IBrush defaultBrush = defaultColorKey != null ? (IBrush)DesktopResources.GetDefault(defaultColorKey) : (IBrush)(new SolidColorBrush(Colors.Transparent));
 
             return color == Color.Default ? defaultBrush : color.ToBrush();
         }

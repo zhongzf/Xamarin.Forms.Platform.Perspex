@@ -55,6 +55,7 @@
     <Compile Include="DatePickerRenderer.cs" />
     <Compile Include="DefaultRenderer.cs" />
     <Compile Include="DesktopBaseWindow.cs" />
+    <Compile Include="DesktopResources.cs" />
     <Compile Include="FileImageSourceHandler.cs" />
     <Compile Include="FileImageSourcePathConverter.cs" />
     <Compile Include="ICellRenderer.cs" />

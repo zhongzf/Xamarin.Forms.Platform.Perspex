@@ -95,23 +95,23 @@ namespace Xamarin.Forms.Platform.PerspexDesktop
 
 		void UpdateCancelButtonColor()
 		{
-			//var foregroundBrush = Windows.UI.Xaml.Application.Current.Resources["FormsCancelForegroundBrush"] as SolidColorBrush;
-			//var backgroundBrush = Windows.UI.Xaml.Application.Current.Resources["FormsCancelBackgroundBrush"] as SolidColorBrush;
+            var foregroundBrush = DesktopResources.GetDefault("FormsCancelForegroundBrush") as SolidColorBrush;
+            var backgroundBrush = DesktopResources.GetDefault("FormsCancelBackgroundBrush") as SolidColorBrush;
 
-			//Color cancelColor = Element.CancelButtonColor;
+            Color cancelColor = Element.CancelButtonColor;
 
-			//if (cancelColor.IsDefault)
-			//{
-			//	backgroundBrush.Color = (Windows.UI.Xaml.Application.Current.Resources["TextBoxButtonBackgroundThemeBrush"] as SolidColorBrush).Color;
-			//	foregroundBrush.Color = (Windows.UI.Xaml.Application.Current.Resources["SystemControlBackgroundChromeBlackMediumBrush"] as SolidColorBrush).Color;
-			//}
-			//else
-			//{
-			//	Windows.UI.Color newColor = cancelColor.ToWindowsColor();
-			//	backgroundBrush.Color = newColor;
-			//	foregroundBrush.Color = newColor.GetIdealForegroundForBackgroundColor();
-			//}
-		}
+            //if (cancelColor.IsDefault)
+            //{
+            //    backgroundBrush.Color = (DesktopResources.GetDefault("TextBoxButtonBackgroundThemeBrush") as SolidColorBrush).Color;
+            //    foregroundBrush.Color = (DesktopResources.GetDefault("SystemControlBackgroundChromeBlackMediumBrush") as SolidColorBrush).Color;
+            //}
+            //else
+            //{
+            //    Perspex.Media.Color newColor = cancelColor.ToWindowsColor();
+            //    backgroundBrush.Color = newColor;
+            //    foregroundBrush.Color = newColor.GetIdealForegroundForBackgroundColor();
+            //}
+        }
 
 		void UpdateFont()
 		{
@@ -154,24 +154,24 @@ namespace Xamarin.Forms.Platform.PerspexDesktop
 
 			Color placeholderColor = Element.PlaceholderColor;
 
-			//if (placeholderColor.IsDefault)
-			//{
-			//	if (_defaultPlaceholderColorBrush == null)
-			//		return;
+            //if (placeholderColor.IsDefault)
+            //{
+            //    if (_defaultPlaceholderColorBrush == null)
+            //        return;
 
-			//	_queryTextBox.PlaceholderForegroundBrush = _defaultPlaceholderColorBrush;
-			//	_queryTextBox.PlaceholderForegroundBrush = _defaultPlaceholderColorFocusBrush;
-			//}
+            //    _queryTextBox.PlaceholderForegroundBrush = _defaultPlaceholderColorBrush;
+            //    _queryTextBox.PlaceholderForegroundBrush = _defaultPlaceholderColorFocusBrush;
+            //}
 
-			//if (_defaultPlaceholderColorBrush == null)
-			//{
-			//	_defaultPlaceholderColorBrush = _queryTextBox.PlaceholderForegroundBrush;
-			//	_defaultPlaceholderColorFocusBrush = _queryTextBox.PlaceholderForegroundFocusBrush;
-			//}
+            //if (_defaultPlaceholderColorBrush == null)
+            //{
+            //    _defaultPlaceholderColorBrush = _queryTextBox.PlaceholderForegroundBrush;
+            //    _defaultPlaceholderColorFocusBrush = _queryTextBox.PlaceholderForegroundFocusBrush;
+            //}
 
-			//_queryTextBox.PlaceholderForegroundBrush = placeholderColor.ToBrush();
-			//_queryTextBox.PlaceholderForegroundFocusBrush = placeholderColor.ToBrush();
-		}
+            //_queryTextBox.PlaceholderForegroundBrush = placeholderColor.ToBrush();
+            //_queryTextBox.PlaceholderForegroundFocusBrush = placeholderColor.ToBrush();
+        }
 
 		void UpdateText()
 		{

@@ -114,8 +114,8 @@ namespace Xamarin.Forms.Platform.PerspexDesktop
             }
             else
             {
-                // TODO: ApplyFont
-                //Control.ApplyFont(editor);
+                // ApplyFont
+                Control.ApplyFont(editor);
             }
 
             _fontApplied = true;

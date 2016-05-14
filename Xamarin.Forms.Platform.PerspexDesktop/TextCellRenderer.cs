@@ -11,12 +11,12 @@ namespace Xamarin.Forms.Platform.PerspexDesktop
 			if (cell.RealParent is ListView)
 			{
 				if (TemplatedItemsList<ItemsView<Cell>, Cell>.GetIsGroupHeader(cell))
-					return (IDataTemplate)Application.Current.Resources["ListViewHeaderTextCell"];
+					return (IDataTemplate)DesktopResources.GetDefault("ListViewHeaderTextCell");
 
-				//return (IDataTemplate) Application.Current.Resources["ListViewTextCell"];
+				//return (IDataTemplate) DesktopResourcesManager.GetDefaultResource("ListViewTextCell"];
 			}
 
-			return (IDataTemplate)Application.Current.Resources["TextCell"];
+			return (IDataTemplate)DesktopResources.GetDefault("TextCell");
 		}
 	}
 
@@ -42,7 +42,7 @@ namespace Xamarin.Forms.Platform.PerspexDesktop
 	{
 		public virtual IDataTemplate GetTemplate(Cell cell)
 		{
-			return (IDataTemplate)Application.Current.Resources["EntryCell"];
+			return (IDataTemplate)DesktopResources.GetDefault("EntryCell");
 		}
 	}
 
@@ -50,7 +50,7 @@ namespace Xamarin.Forms.Platform.PerspexDesktop
 	{
 		public virtual IDataTemplate GetTemplate(Cell cell)
 		{
-			return (IDataTemplate)Application.Current.Resources["ViewCell"];
+			return (IDataTemplate)DesktopResources.GetDefault("ViewCell");
 		}
 	}
 
@@ -58,7 +58,7 @@ namespace Xamarin.Forms.Platform.PerspexDesktop
 	{
 		public virtual IDataTemplate GetTemplate(Cell cell)
 		{
-			return (IDataTemplate)Application.Current.Resources["SwitchCell"];
+			return (IDataTemplate)DesktopResources.GetDefault("SwitchCell");
 		}
 	}
 
@@ -67,8 +67,8 @@ namespace Xamarin.Forms.Platform.PerspexDesktop
 		public virtual IDataTemplate GetTemplate(Cell cell)
 		{
 			//if (cell.Parent is ListView)
-			//	return (IDataTemplate)Application.Current.Resources["ListImageCell"];
-			return (IDataTemplate)Application.Current.Resources["ImageCell"];
+			//	return (IDataTemplate)DesktopResourcesManager.GetDefaultResource("ListImageCell");
+			return (IDataTemplate)DesktopResources.GetDefault("ImageCell");
 		}
 	}
 }

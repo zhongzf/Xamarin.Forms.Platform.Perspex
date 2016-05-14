@@ -118,6 +118,7 @@
       <ActivityIndicator></ActivityIndicator>
       <SearchBar>        
       </SearchBar>
+      <WebView x:Name="webView"></WebView>
     </StackLayout>
   </ScrollView>
 </ContentPage>

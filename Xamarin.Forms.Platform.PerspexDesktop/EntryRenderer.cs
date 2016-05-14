@@ -218,7 +218,10 @@ namespace Xamarin.Forms.Platform.PerspexDesktop
 
         void UpdateTextColor()
         {
-            Control.Foreground = Element.TextColor.ToBrush();
+            if (!Element.TextColor.IsDefault)
+            {
+                Control.Foreground = Element.TextColor.ToBrush();
+            }
         }
     }
 }

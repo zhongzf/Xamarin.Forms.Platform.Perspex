@@ -1,10 +1,15 @@
-﻿using System;
+﻿//#define USE_TOGGLEBUTTON
+using System;
 using System.ComponentModel;
 
 namespace Xamarin.Forms.Platform.PerspexDesktop
 {
+#if USE_TOGGLEBUTTON
     public class SwitchRenderer : ViewRenderer<Switch, Perspex.Controls.Primitives.ToggleButton>
-	{
+#else
+    public class SwitchRenderer : ViewRenderer<Switch, Perspex.Controls.CheckBox>
+#endif
+    {
 		protected override void OnElementChanged(ElementChangedEventArgs<Switch> e)
 		{
 			base.OnElementChanged(e);
@@ -13,7 +18,11 @@ namespace Xamarin.Forms.Platform.PerspexDesktop
 			{
 				if (Control == null)
 				{
-					var control = new Perspex.Controls.Primitives.ToggleButton();
+#if USE_TOGGLEBUTTON
+                    var control = new Perspex.Controls.Primitives.ToggleButton();
+#else
+                    var control = new Perspex.Controls.CheckBox();
+#endif
                     control.PropertyChanged += OnPropertyChanged;
 					SetNativeControl(control);
 				}

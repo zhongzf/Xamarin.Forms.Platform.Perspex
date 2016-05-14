@@ -29,20 +29,24 @@ namespace Xamarin.Forms.Platform.PerspexDesktop
             loader.Load(typeof(DesktopApplication), this);
         }
 
-        public void LoadApplication(Type applicationType)
+        public void LoadApplication(Type applicationType, bool debugMode = false)
         {
             var window = new DesktopWindow();
             Forms.Init(window);
+            if(debugMode)
+            {
+                window.AttachDevTools();
+            }
             var application = (Xamarin.Forms.Application)Activator.CreateInstance(applicationType);
             window.LoadApplication(application);
             window.Show();
             this.Run(window);
         }
 
-        public static void Run(Type applicationType)
+        public static void Run(Type applicationType, bool debugMode = false)
         {
             var application = new DesktopApplication();
-            application.LoadApplication(applicationType);
+            application.LoadApplication(applicationType, debugMode);
         }
     }
 }

@@ -123,12 +123,14 @@ namespace Xamarin.Forms.Platform.PerspexDesktop
                 }
                 else
                 {
+                    // TODO: formatted
                     //textBlock.Inlines.Clear();
 
                     //for (var i = 0; i < formatted.Spans.Count; i++)
                     //{
                     //    textBlock.Inlines.Add(formatted.Spans[i].ToRun());
                     //}
+                    textBlock.Text = formatted.ToString();
                 }
             }
         }

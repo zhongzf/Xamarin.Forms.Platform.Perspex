@@ -80,6 +80,14 @@ namespace Xamarin.Forms.Platform.PerspexDesktop
             }
         }
 
+        protected override void UpdateBackgroundColor()
+        {
+            // Button is a special case; we don't want to set the Control's background
+            // because it goes outside the bounds of the Border/ContentPresenter, 
+            // which is where we might change the BorderRadius to create a rounded shape.
+            return;
+        }
+
         void OnButtonClick(object sender, RoutedEventArgs e)
         {
             Button buttonView = Element;
@@ -89,14 +97,12 @@ namespace Xamarin.Forms.Platform.PerspexDesktop
 
         void UpdateBackground()
         {
-            var backgroudColor = Element.BackgroundColor;
-            Control.Background = backgroudColor.ToBrush();
+            Control.Background = Element.BackgroundColor != Color.Default ? Element.BackgroundColor.ToBrush() : (IBrush)DesktopResources.GetDefault("ButtonBackgroundThemeBrush");
         }
 
         void UpdateBorderColor()
         {
-            var borderColor = Element.BorderColor;
-            Control.BorderBrush = borderColor.ToBrush();
+            Control.BorderBrush = Element.BorderColor != Color.Default ? Element.BorderColor.ToBrush() : (IBrush)DesktopResources.GetDefault("ButtonBorderThemeBrush");
         }
 
         void UpdateBorderRadius()
@@ -107,8 +113,7 @@ namespace Xamarin.Forms.Platform.PerspexDesktop
 
         void UpdateBorderWidth()
         {
-            var borderWidth = Element.BorderWidth;
-            Control.BorderThickness = borderWidth;
+            Control.BorderThickness = Element.BorderWidth == 0d ? 3 : Element.BorderWidth;
         }
 
         void UpdateContent()
@@ -203,8 +208,7 @@ namespace Xamarin.Forms.Platform.PerspexDesktop
 
         void UpdateTextColor()
         {
-            var textColor = Element.TextColor;
-            Control.Foreground = textColor.ToBrush();
+            Control.Foreground = Element.TextColor != Color.Default ? Element.TextColor.ToBrush() : (IBrush)DesktopResources.GetDefault("DefaultTextForegroundThemeBrush");
         }
     }
 }

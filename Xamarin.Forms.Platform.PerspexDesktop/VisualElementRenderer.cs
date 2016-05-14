@@ -5,6 +5,7 @@ using Perspex.Controls;
 using Perspex.Animation;
 using Perspex.Interactivity;
 using Xamarin.Forms;
+using Perspex.Controls.Primitives;
 
 namespace Xamarin.Forms.Platform.PerspexDesktop
 {
@@ -228,13 +229,30 @@ namespace Xamarin.Forms.Platform.PerspexDesktop
 
         protected virtual void UpdateBackgroundColor()
         {
-            var control = Control as Control;
-            //if (_initialBrush == null)
-            //    _initialBrush = control == null ? Background : control.Background;
-            //if (control != null)
-            //    control.Background = Element.BackgroundColor != Color.Default ? Element.BackgroundColor.ToBrush() : _initialBrush;
-            //else
-            //    Background = Element.BackgroundColor != Color.Default ? Element.BackgroundColor.ToBrush() : _initialBrush;
+            Color backgroundColor = Element.BackgroundColor;
+            var control = Control as TemplatedControl;
+            if (control != null)
+            {
+                if (!backgroundColor.IsDefault)
+                {
+                    control.Background = backgroundColor.ToBrush();
+                }
+                else
+                {
+                    control.ClearValue(TemplatedControl.BackgroundProperty);
+                }
+            }
+            else
+            {
+                if (!backgroundColor.IsDefault)
+                {
+                    Background = backgroundColor.ToBrush();
+                }
+                else
+                {
+                    ClearValue(BackgroundProperty);
+                }
+            }
         }
 
 

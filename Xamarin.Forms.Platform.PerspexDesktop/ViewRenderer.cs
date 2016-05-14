@@ -15,5 +15,18 @@ namespace Xamarin.Forms.Platform.PerspexDesktop
                 UpdateBackgroundColor();
             }
         }
+
+        protected override void SetAutomationId(string id)
+        {
+            if (Control == null)
+            {
+                base.SetAutomationId(id);
+            }
+            else
+            {
+                //SetValue(AutomationProperties.AutomationIdProperty, $"{id}_Container");
+                //Control.SetValue(AutomationProperties.AutomationIdProperty, id);
+            }
+        }
     }
 }

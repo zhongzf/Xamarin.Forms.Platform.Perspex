@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace PrismUnityDemoApp.Views
@@ -41,11 +42,13 @@ namespace PrismUnityDemoApp.Views
 
         async void OnButtonClicked(object sender, EventArgs args)
         {
+            Button button = (Button)sender;
             //Func<double, double> customEase = t => 9 * t * t * t - 13.5 * t * t + 5.5 * t;
             //double scale = Math.Min(Width / button.Width, Height / button.Height);
             //await button.ScaleTo(scale, 1000, customEase);
             //await Task.Delay(1000);
             //await button.ScaleTo(1, 1000, customEase);
+            //button.Scale = 20;
 
             /*
             // Swing down from lower - left corner.
@@ -79,7 +82,6 @@ namespace PrismUnityDemoApp.Views
             button.Rotation = 0;
             button.Opacity = 1;
             */
-            Button button = (Button)sender;
             new Animation {
                 { 0, 0.5, new Animation(v => button.Scale = v, 1, 5) },
                 { 0.25, 0.75, new Animation(v => button.Rotation = v, 0, 360) },

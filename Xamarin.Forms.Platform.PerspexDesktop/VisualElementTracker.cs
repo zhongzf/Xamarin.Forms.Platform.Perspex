@@ -1,4 +1,5 @@
 ﻿using Perspex.Controls;
+using Perspex.Media;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -439,42 +440,55 @@ namespace Xamarin.Forms.Platform.PerspexDesktop
 			double translationY = view.TranslationY;
 			double scale = view.Scale;
 
-            /*
-			if (rotationX % 360 == 0 && rotationY % 360 == 0 && rotation % 360 == 0 && translationX == 0 && translationY == 0 && scale == 1)
-			{
-				frameworkElement.Projection = null;
-			}
-			else
-			{
-				frameworkElement.Projection = new PlaneProjection
-				{
-					CenterOfRotationX = anchorX,
-					CenterOfRotationY = anchorY,
-					GlobalOffsetX = scale == 0 ? 0 : translationX / scale,
-					GlobalOffsetY = scale == 0 ? 0 : translationY / scale,
-					RotationX = -rotationX,
-					RotationY = -rotationY,
-					RotationZ = -rotation
-				};
-			}
-            */
-		}
 
-		static void UpdateScaleAndRotation(VisualElement view, Control frameworkElement)
+            //if (rotationX % 360 == 0 && rotationY % 360 == 0 && rotation % 360 == 0 && translationX == 0 && translationY == 0 && scale == 1)
+            //{
+            //    frameworkElement.Projection = null;
+            //}
+            //else
+            //{
+            //    frameworkElement.Projection = new PlaneProjection
+            //    {
+            //        CenterOfRotationX = anchorX,
+            //        CenterOfRotationY = anchorY,
+            //        GlobalOffsetX = scale == 0 ? 0 : translationX / scale,
+            //        GlobalOffsetY = scale == 0 ? 0 : translationY / scale,
+            //        RotationX = -rotationX,
+            //        RotationY = -rotationY,
+            //        RotationZ = -rotation
+            //    };
+            //}
+            var angle = rotation;
+            var rotateTransform = new RotateTransform { Angle = angle };
+            //if (frameworkElement.RenderTransform is TransformGroup)
+            //{
+            //    var transformGroup = frameworkElement.RenderTransform as TransformGroup;
+            //    transformGroup.Children.Add(rotateTransform);
+            //}
+            //else
+            //{
+                frameworkElement.RenderTransform = rotateTransform;
+            //}
+        }
+
+        static void UpdateScaleAndRotation(VisualElement view, Control frameworkElement)
 		{
 			double anchorX = view.AnchorX;
 			double anchorY = view.AnchorY;
 			double scale = view.Scale;
-			//frameworkElement.RenderTransformOrigin = new Windows.Foundation.Point(anchorX, anchorY);
-			//frameworkElement.RenderTransform = new ScaleTransform { ScaleX = scale, ScaleY = scale };
+            frameworkElement.TransformOrigin = new Perspex.RelativePoint(anchorX, anchorY, Perspex.RelativeUnit.Relative);
+            frameworkElement.RenderTransform = new ScaleTransform { ScaleX = scale, ScaleY = scale };
+            //var transformGroup = new TransformGroup();
+            //frameworkElement.RenderTransform = transformGroup;
+            //transformGroup.Children.Add(new ScaleTransform { ScaleX = scale, ScaleY = scale });
 
-			//UpdateRotation(view, frameworkElement);
-		}
+            //UpdateRotation(view, frameworkElement);
+        }
 
-		static void UpdateVisibility(VisualElement view, Control frameworkElement)
+        static void UpdateVisibility(VisualElement view, Control frameworkElement)
 		{
-			//frameworkElement.Visibility = view.IsVisible ? Visibility.Visible : Visibility.Collapsed;
-		}
+            frameworkElement.IsVisible = view.IsVisible;
+        }
 
 		void UpdatingGestureRecognizers()
 		{

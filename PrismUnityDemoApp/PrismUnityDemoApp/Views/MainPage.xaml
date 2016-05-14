@@ -20,9 +20,9 @@
       <Style TargetType="Button">
         <Setter Property="HorizontalOptions" Value="Center" />
         <Setter Property="VerticalOptions" Value="CenterAndExpand" />
-        <Setter Property="BorderWidth" Value="5" />
+        <!--<Setter Property="BorderWidth" Value="5" />
         <Setter Property="TextColor" Value="Green" />
-        <Setter Property="FontSize" Value="Large" />
+        <Setter Property="FontSize" Value="Large" />-->
       </Style>
     </ResourceDictionary>
   </ContentPage.Resources>

@@ -1,6 +1,8 @@
 ﻿using Perspex;
 using Perspex.Controls;
 using Perspex.Controls.Shapes;
+using Perspex.Markup.Data;
+using Perspex.Media;
 
 namespace Xamarin.Forms.Platform.PerspexDesktop
 {
@@ -15,9 +17,11 @@ namespace Xamarin.Forms.Platform.PerspexDesktop
                 if (Control == null)
                 {
                     var rectangle = new Perspex.Controls.Shapes.Rectangle();
+
                     rectangle.DataContext = Element;
-                    // TODO: Binding
-                    //rectangle.Bind(Shape.FillProperty, new Binding { Converter = new ColorConverter(), Path = new PropertyPath("Color") });
+                    var binding = new Perspex.Markup.Xaml.Data.Binding { Converter = new ColorConverter(), Path = "Color" };
+                    rectangle.Bind(Shape.FillProperty, binding);
+
                     SetNativeControl(rectangle);
                 }
             }

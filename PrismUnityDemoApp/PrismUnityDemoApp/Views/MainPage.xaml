@@ -82,6 +82,7 @@
           <x:String>Font Size = 30</x:String>
         </Picker.Items>
       </Picker>
+      <BoxView x:Name="boxViewYellow" Color="Yellow" HeightRequest="50" />
       <ListView x:Name="listView" SelectedItem="{Binding Source={x:Reference boxView}, Path=Color, Mode=TwoWay}">
         <ListView.ItemsSource>
           <x:Array Type="{x:Type Color}">

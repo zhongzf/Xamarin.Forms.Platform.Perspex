@@ -32,7 +32,7 @@ namespace Xamarin.Forms.Platform.PerspexDesktop
 
         protected abstract Platform CreatePlatform();
 
-        protected void LoadApplication(Application application)
+        public void LoadApplication(Application application)
         {
             if (application == null)
                 throw new ArgumentNullException("application");

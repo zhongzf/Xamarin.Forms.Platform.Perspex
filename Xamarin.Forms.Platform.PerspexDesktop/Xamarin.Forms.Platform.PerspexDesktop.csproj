@@ -47,16 +47,21 @@
     <Compile Include="BackgroundTracker.cs" />
     <Compile Include="BoxViewRenderer.cs" />
     <Compile Include="ButtonRenderer.cs" />
+    <Compile Include="CellControl.cs" />
     <Compile Include="ColorConverter.cs" />
     <Compile Include="ConvertExtensions.cs" />
     <Compile Include="DefaultRenderer.cs" />
     <Compile Include="DesktopBaseWindow.cs" />
+    <Compile Include="ICellRenderer.cs" />
     <Compile Include="LayoutExtensions.cs" />
     <Compile Include="ListViewRenderer.cs" />
+    <Compile Include="DesktopApplication.cs" />
     <Compile Include="NativeViewWrapper.cs" />
     <Compile Include="NativeViewWrapperRenderer.cs" />
     <Compile Include="PlatformEffect.cs" />
     <Compile Include="SliderRenderer.cs" />
+    <Compile Include="TextCellRenderer.cs" />
+    <Compile Include="VisualTreeHelper.cs" />
     <Compile Include="WindowsIsolatedStorage.cs" />
     <Compile Include="WindowsPlatformServices.cs" />
     <Compile Include="WindowsResourcesProvider.cs" />
@@ -166,6 +171,11 @@
       <Project>{9db2f292-8034-4e06-89ad-98bbda4306b9}</Project>
       <Name>Xamarin.Forms.Xaml</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DesktopApplication.xaml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!--<Import Project="..\packages\SharpDX.2.6.3\build\SharpDX.targets" Condition="Exists('..\packages\SharpDX.2.6.3\build\SharpDX.targets')" />-->

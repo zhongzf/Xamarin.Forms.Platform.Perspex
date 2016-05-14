@@ -5,6 +5,10 @@ namespace PrismUnityDemoApp
 {
     public partial class App : PrismApplication
     {
+        public App()
+        {
+        }
+
         protected override void OnInitialized()
         {
             InitializeComponent();

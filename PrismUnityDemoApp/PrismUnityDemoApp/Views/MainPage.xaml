@@ -47,7 +47,7 @@
       <Button Style="{StaticResource buttonStyle}" Text="Test"></Button>
       <Label Text="{x:Static sys:Environment.NewLine}" TextColor="{StaticResource textColor}">
       </Label>
-      <Button Text="Test2"></Button>
+      <Button Text="Test2"  Clicked="OnButtonTest2Clicked"></Button>
       <Label VerticalOptions="CenterAndExpand" HorizontalTextAlignment="Center" FontSize="Medium">
         <Label.FormattedText>
           <FormattedString>

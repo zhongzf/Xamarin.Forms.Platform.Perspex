@@ -17,6 +17,11 @@ namespace PrismUnityDemoApp.Views
                 });
         }
 
+        void OnButtonTest2Clicked(object sender, EventArgs e)
+        {
+            this.slider.Value = 0.5; 
+        }
+
         async void OnButtonClicked(object sender, EventArgs args)
         {
             //Func<double, double> customEase = t => 9 * t * t * t - 13.5 * t * t + 5.5 * t;

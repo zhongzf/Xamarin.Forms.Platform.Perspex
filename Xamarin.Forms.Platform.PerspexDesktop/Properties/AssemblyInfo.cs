@@ -48,7 +48,7 @@ using Xamarin.Forms.Platform.PerspexDesktop;
 [assembly: ExportRenderer(typeof(Image), typeof(ImageRenderer))]
 [assembly: ExportRenderer(typeof(Label), typeof(LabelRenderer))]
 [assembly: ExportRenderer(typeof(Button), typeof(ButtonRenderer))]
-//[assembly: ExportRenderer(typeof(ListView), typeof(ListViewRenderer))]
+[assembly: ExportRenderer(typeof(ListView), typeof(ListViewRenderer))]
 [assembly: ExportRenderer(typeof(ScrollView), typeof(ScrollViewRenderer))]
 [assembly: ExportRenderer(typeof(ProgressBar), typeof(ProgressBarRenderer))]
 [assembly: ExportRenderer(typeof(Slider), typeof(SliderRenderer))]
@@ -68,3 +68,11 @@ using Xamarin.Forms.Platform.PerspexDesktop;
 // Pages
 
 [assembly: ExportRenderer(typeof(Page), typeof(PageRenderer))]
+
+// Cells
+
+[assembly: ExportCell(typeof(Cell), typeof(TextCellRenderer))]
+[assembly: ExportCell(typeof(ImageCell), typeof(ImageCellRenderer))]
+[assembly: ExportCell(typeof(EntryCell), typeof(EntryCellRenderer))]
+[assembly: ExportCell(typeof(SwitchCell), typeof(SwitchCellRenderer))]
+[assembly: ExportCell(typeof(ViewCell), typeof(ViewCellRenderer))]

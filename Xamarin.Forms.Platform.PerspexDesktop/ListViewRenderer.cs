@@ -1,8 +1,11 @@
-﻿using System;
+﻿using Perspex.Controls.Templates;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
+
 
 namespace Xamarin.Forms.Platform.PerspexDesktop
 {
@@ -29,7 +32,8 @@ namespace Xamarin.Forms.Platform.PerspexDesktop
 				{
 					List = new Perspex.Controls.ListBox
 					{
-					};
+                        //DataTemplates = Perspex.Application.Current.DataTemplates
+                    };
 
                     // In order to support tapping on elements within a list item, we handle
                     // ListView.Tapped (which can be handled by child elements in the list items
@@ -42,9 +46,10 @@ namespace Xamarin.Forms.Platform.PerspexDesktop
                     }
                 }
 
+                // TODO: DataContext
                 // WinRT throws an exception if you set ItemsSource directly to a CVS, so bind it.
                 //List.DataContext = new CollectionViewSource { Source = Element.ItemsSource, IsSourceGrouped = Element.IsGroupingEnabled };
-                // TODO: DataContext
+                List.DataContext = Element.ItemsSource;
 
                 UpdateGrouping();
 				UpdateHeader();
@@ -52,8 +57,7 @@ namespace Xamarin.Forms.Platform.PerspexDesktop
 				ClearSizeEstimate();
 			}
 		}
-
-
+        
         protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e)
 		{
 			base.OnElementPropertyChanged(sender, e);

@@ -2,6 +2,32 @@
 <prism:PrismApplication xmlns="http://xamarin.com/schemas/2014/forms"
                         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                         xmlns:prism="clr-namespace:Prism.Unity;assembly=Prism.Unity.Forms"
+                        xmlns:pd="clr-namespace:Xamarin.Forms.Platform.PerspexDesktop;assembly=Xamarin.Forms.Platform.PerspexDesktop"
                         x:Class="PrismUnityDemoApp.App">
+  <prism:PrismApplication.Resources>
+    <ResourceDictionary>
+      <Color x:Key="textColor">Red</Color>
+      <x:String x:Key="currentDateTime">Not actually a DateTime</x:String>
+      <Style x:Key="buttonStyle" TargetType="Button">
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+        <Setter Property="BorderWidth" Value="3" />
+        <Setter Property="TextColor" Value="Red" />
+        <Setter Property="FontSize" Value="Large" />
+      </Style>
+      <Style TargetType="Button">
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+        <Setter Property="BorderWidth" Value="5" />
+        <Setter Property="TextColor" Value="Green" />
+        <Setter Property="FontSize" Value="Large" />
+      </Style>
+
+      <DataTemplate x:Key="CellTemplate">
+        <pd:CellControl />
+      </DataTemplate>
+
+    </ResourceDictionary>
+  </prism:PrismApplication.Resources>
 
 </prism:PrismApplication>

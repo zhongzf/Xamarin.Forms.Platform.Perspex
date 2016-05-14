@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AlignmentExtensions.cs" />
+    <Compile Include="AsyncValue.cs" />
     <Compile Include="BackgroundTracker.cs" />
     <Compile Include="BoxViewRenderer.cs" />
     <Compile Include="ButtonRenderer.cs" />
@@ -52,7 +53,12 @@
     <Compile Include="ConvertExtensions.cs" />
     <Compile Include="DefaultRenderer.cs" />
     <Compile Include="DesktopBaseWindow.cs" />
+    <Compile Include="FileImageSourceHandler.cs" />
+    <Compile Include="FileImageSourcePathConverter.cs" />
     <Compile Include="ICellRenderer.cs" />
+    <Compile Include="IImageSourceHandler.cs" />
+    <Compile Include="ImageConverter.cs" />
+    <Compile Include="ImageLoaderSourceHandler.cs" />
     <Compile Include="LayoutExtensions.cs" />
     <Compile Include="ListViewRenderer.cs" />
     <Compile Include="DesktopApplication.cs" />
@@ -60,6 +66,7 @@
     <Compile Include="NativeViewWrapperRenderer.cs" />
     <Compile Include="PlatformEffect.cs" />
     <Compile Include="SliderRenderer.cs" />
+    <Compile Include="StreamImagesourceHandler.cs" />
     <Compile Include="TextCellRenderer.cs" />
     <Compile Include="VisualTreeHelper.cs" />
     <Compile Include="WindowsIsolatedStorage.cs" />

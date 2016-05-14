@@ -65,6 +65,13 @@ using Xamarin.Forms.Platform.PerspexDesktop;
 //[assembly: ExportRenderer(typeof(TableView), typeof(TableViewRenderer))]
 //[assembly: ExportRenderer(typeof(NativeViewWrapper), typeof(NativeViewWrapperRenderer))]
 
+
+//ImageSources
+
+[assembly: ExportImageSourceHandler(typeof(FileImageSource), typeof(FileImageSourceHandler))]
+[assembly: ExportImageSourceHandler(typeof(StreamImageSource), typeof(StreamImagesourceHandler))]
+[assembly: ExportImageSourceHandler(typeof(UriImageSource), typeof(ImageLoaderSourceHandler))]
+
 // Pages
 
 [assembly: ExportRenderer(typeof(Page), typeof(PageRenderer))]

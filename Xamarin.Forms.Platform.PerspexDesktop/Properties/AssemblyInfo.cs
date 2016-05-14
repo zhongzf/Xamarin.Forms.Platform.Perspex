@@ -52,18 +52,19 @@ using Xamarin.Forms.Platform.PerspexDesktop;
 [assembly: ExportRenderer(typeof(ScrollView), typeof(ScrollViewRenderer))]
 [assembly: ExportRenderer(typeof(ProgressBar), typeof(ProgressBarRenderer))]
 [assembly: ExportRenderer(typeof(Slider), typeof(SliderRenderer))]
-//[assembly: ExportRenderer(typeof(Switch), typeof(SwitchRenderer))]
-//[assembly: ExportRenderer(typeof(WebView), typeof(WebViewRenderer))]
+[assembly: ExportRenderer(typeof(Switch), typeof(SwitchRenderer))]
+[assembly: ExportRenderer(typeof(WebView), typeof(WebViewRenderer))]
 [assembly: ExportRenderer(typeof(Frame), typeof(FrameRenderer))]
-//[assembly: ExportRenderer(typeof(ActivityIndicator), typeof(ActivityIndicatorRenderer))]
+[assembly: ExportRenderer(typeof(ActivityIndicator), typeof(ActivityIndicatorRenderer))]
 [assembly: ExportRenderer(typeof(Editor), typeof(EditorRenderer))]
-//[assembly: ExportRenderer(typeof(Picker), typeof(PickerRenderer))]
-//[assembly: ExportRenderer(typeof(TimePicker), typeof(TimePickerRenderer))]
-//[assembly: ExportRenderer(typeof(DatePicker), typeof(DatePickerRenderer))]
-//[assembly: ExportRenderer(typeof(Stepper), typeof(StepperRenderer))]
+[assembly: ExportRenderer(typeof(Picker), typeof(PickerRenderer))]
+[assembly: ExportRenderer(typeof(TimePicker), typeof(TimePickerRenderer))]
+[assembly: ExportRenderer(typeof(DatePicker), typeof(DatePickerRenderer))]
+[assembly: ExportRenderer(typeof(Stepper), typeof(StepperRenderer))]
 [assembly: ExportRenderer(typeof(Entry), typeof(EntryRenderer))]
-//[assembly: ExportRenderer(typeof(TableView), typeof(TableViewRenderer))]
-//[assembly: ExportRenderer(typeof(NativeViewWrapper), typeof(NativeViewWrapperRenderer))]
+[assembly: ExportRenderer(typeof(TableView), typeof(TableViewRenderer))]
+[assembly: ExportRenderer(typeof(NativeViewWrapper), typeof(NativeViewWrapperRenderer))]
+[assembly: ExportRenderer(typeof(SearchBar), typeof(SearchBarRenderer))]
 
 
 //ImageSources
@@ -75,6 +76,10 @@ using Xamarin.Forms.Platform.PerspexDesktop;
 // Pages
 
 [assembly: ExportRenderer(typeof(Page), typeof(PageRenderer))]
+//[assembly: ExportRenderer(typeof(NavigationPage), typeof(NavigationPageRenderer))]
+//[assembly: ExportRenderer(typeof(MasterDetailPage), typeof(MasterDetailPageRenderer))]
+//[assembly: ExportRenderer(typeof(CarouselPage), typeof(CarouselPageRenderer))]
+//[assembly: ExportRenderer(typeof(TabbedPage), typeof(TabbedPageRenderer))]
 
 // Cells
 

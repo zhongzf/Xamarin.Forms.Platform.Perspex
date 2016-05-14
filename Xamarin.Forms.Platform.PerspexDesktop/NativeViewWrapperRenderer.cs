@@ -1,8 +1,9 @@
+using Perspex.Controls;
 using Xamarin.Forms.Internals;
 
 namespace Xamarin.Forms.Platform.PerspexDesktop
 {
-    public class NativeViewWrapperRenderer : ViewRenderer<NativeViewWrapper, Perspex.Controls.Control>
+    public class NativeViewWrapperRenderer : ViewRenderer<NativeViewWrapper, Control>
 	{
 		public override SizeRequest GetDesiredSize(double widthConstraint, double heightConstraint)
 		{
@@ -26,8 +27,8 @@ namespace Xamarin.Forms.Platform.PerspexDesktop
 				return base.ArrangeOverride(finalSize);
 			}
 
-            // The user has specified a different implementation of ArrangeOverride
-            Perspex.Size? result = Element.ArrangeOverrideDelegate(this, finalSize);
+			// The user has specified a different implementation of ArrangeOverride
+			Perspex.Size? result = Element.ArrangeOverrideDelegate(this, finalSize);
 
 			// If the delegate returns a Size, we use it; 
 			// if it returns null, fall back to the default implementation
@@ -61,7 +62,6 @@ namespace Xamarin.Forms.Platform.PerspexDesktop
 			if (e.OldElement == null)
 			{
 				SetNativeControl(Element.NativeElement);
-                // TODO: LayoutUpdated
 				//Control.LayoutUpdated += (sender, args) => { ((IVisualElementController)Element)?.InvalidateMeasure(InvalidationTrigger.MeasureChanged); };
 			}
 		}

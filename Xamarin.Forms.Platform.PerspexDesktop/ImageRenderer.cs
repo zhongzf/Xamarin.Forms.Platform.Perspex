@@ -26,11 +26,6 @@ namespace Xamarin.Forms.Platform.PerspexDesktop
             }
         }
 
-        private void Image_Initialized(object sender, EventArgs e)
-        {
-            OnImageOpened(this, e);
-        }
-
         protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             base.OnElementPropertyChanged(sender, e);
@@ -39,6 +34,11 @@ namespace Xamarin.Forms.Platform.PerspexDesktop
                 UpdateSource();
             else if (e.PropertyName == Image.AspectProperty.PropertyName)
                 UpdateAspect();
+        }
+
+        private void Image_Initialized(object sender, EventArgs e)
+        {
+            OnImageOpened(this, e);
         }
 
         static Stretch GetStretch(Aspect aspect)

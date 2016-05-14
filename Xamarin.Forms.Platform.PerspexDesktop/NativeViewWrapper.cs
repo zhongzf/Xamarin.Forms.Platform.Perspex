@@ -1,4 +1,3 @@
-
 using Perspex.Controls;
 
 namespace Xamarin.Forms.Platform.PerspexDesktop

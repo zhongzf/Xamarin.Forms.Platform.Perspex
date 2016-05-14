@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActivityIndicatorRenderer.cs" />
     <Compile Include="AlignmentExtensions.cs" />
     <Compile Include="AsyncValue.cs" />
     <Compile Include="BackgroundTracker.cs" />
@@ -51,6 +52,7 @@
     <Compile Include="CellControl.cs" />
     <Compile Include="ColorConverter.cs" />
     <Compile Include="ConvertExtensions.cs" />
+    <Compile Include="DatePickerRenderer.cs" />
     <Compile Include="DefaultRenderer.cs" />
     <Compile Include="DesktopBaseWindow.cs" />
     <Compile Include="FileImageSourceHandler.cs" />
@@ -59,16 +61,24 @@
     <Compile Include="IImageSourceHandler.cs" />
     <Compile Include="ImageConverter.cs" />
     <Compile Include="ImageLoaderSourceHandler.cs" />
+    <Compile Include="IWrapperAware.cs" />
     <Compile Include="LayoutExtensions.cs" />
     <Compile Include="ListViewRenderer.cs" />
     <Compile Include="DesktopApplication.cs" />
     <Compile Include="NativeViewWrapper.cs" />
     <Compile Include="NativeViewWrapperRenderer.cs" />
+    <Compile Include="PickerRenderer.cs" />
     <Compile Include="PlatformEffect.cs" />
+    <Compile Include="SearchBarRenderer.cs" />
     <Compile Include="SliderRenderer.cs" />
+    <Compile Include="StepperRenderer.cs" />
     <Compile Include="StreamImagesourceHandler.cs" />
+    <Compile Include="SwitchRenderer.cs" />
+    <Compile Include="TableViewRenderer.cs" />
     <Compile Include="TextCellRenderer.cs" />
+    <Compile Include="TimePickerRenderer.cs" />
     <Compile Include="VisualTreeHelper.cs" />
+    <Compile Include="WebViewRenderer.cs" />
     <Compile Include="WindowsIsolatedStorage.cs" />
     <Compile Include="WindowsPlatformServices.cs" />
     <Compile Include="WindowsResourcesProvider.cs" />
@@ -177,6 +187,10 @@
     <ProjectReference Include="..\..\..\GitHub\Xamarin.Forms\Xamarin.Forms.Xaml\Xamarin.Forms.Xaml.csproj">
       <Project>{9db2f292-8034-4e06-89ad-98bbda4306b9}</Project>
       <Name>Xamarin.Forms.Xaml</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Perspex\src\Perspex.HtmlRenderer\Perspex.HtmlRenderer.csproj">
+      <Project>{5fb2b005-0a7f-4dad-add4-3ed01444e63d}</Project>
+      <Name>Perspex.HtmlRenderer</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

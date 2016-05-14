@@ -109,6 +109,15 @@
       <!---->
       <BoxView x:Name="boxView" Color="Lime" HeightRequest="100" />
       <Image Source="https://developer.xamarin.com/demo/IMG_3256.JPG" />
+      <Switch IsToggled="True"></Switch>
+      <Switch></Switch>
+      <DatePicker></DatePicker>
+      <TimePicker></TimePicker>
+      <Stepper></Stepper>
+      <Picker></Picker>
+      <ActivityIndicator></ActivityIndicator>
+      <SearchBar>        
+      </SearchBar>
     </StackLayout>
   </ScrollView>
 </ContentPage>

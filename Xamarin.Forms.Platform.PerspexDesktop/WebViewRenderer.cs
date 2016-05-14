@@ -22,7 +22,10 @@ namespace Xamarin.Forms.Platform.PerspexDesktop
 		public void LoadUrl(string url)
 		{
             // TODO:
-			//Control.Source = new Uri(url);
+            //Control.Source = new Uri(url);
+            // TODO: LoadUrl
+            string html = url;
+            Control.Text = html;
 		}
 
 		protected override void Dispose(bool disposing)

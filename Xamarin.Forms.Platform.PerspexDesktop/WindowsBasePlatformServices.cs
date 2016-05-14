@@ -30,7 +30,7 @@ namespace Xamarin.Forms.Platform.PerspexDesktop
 
         public void BeginInvokeOnMainThread(Action action)
         {
-            Dispatcher.UIThread.InvokeAsync(() => action(), DispatcherPriority.Normal);
+            Dispatcher.UIThread.InvokeAsync(action);
         }
 
         public Ticker CreateTicker()

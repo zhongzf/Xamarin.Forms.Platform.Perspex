@@ -14,7 +14,7 @@ namespace Xamarin.Forms.Platform.PerspexDesktop
                 if (Control == null)
                 {
                     var progressBar = new Perspex.Controls.ProgressBar();
-                    progressBar.PropertyChanged += ProgressBar_PropertyChanged;
+                    progressBar.PropertyChanged += OnPropertyChanged;
                     SetNativeControl(progressBar);
                 }
 
@@ -38,7 +38,7 @@ namespace Xamarin.Forms.Platform.PerspexDesktop
             }
         }
 
-        private void ProgressBar_PropertyChanged(object sender, Perspex.PerspexPropertyChangedEventArgs e)
+        private void OnPropertyChanged(object sender, Perspex.PerspexPropertyChangedEventArgs e)
         {
             if(e.Property == Perspex.Controls.ProgressBar.ValueProperty)
             {
@@ -57,7 +57,7 @@ namespace Xamarin.Forms.Platform.PerspexDesktop
             {
                 if (Control != null)
                 {
-                    Control.PropertyChanged -= ProgressBar_PropertyChanged;
+                    Control.PropertyChanged -= OnPropertyChanged;
                 }
             }
 

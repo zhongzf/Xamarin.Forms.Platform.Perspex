@@ -13,19 +13,19 @@ namespace Xamarin.Forms.Platform.PerspexDesktop
             if (e.OldElement != null)
             {
                 //SizeChanged -= OnSizeChanged;
-                PropertyChanged -= LayoutRenderer_PropertyChanged;
+                PropertyChanged -= OnPropertyChanged;
             }
 
             if (e.NewElement != null)
             {
                 //SizeChanged += OnSizeChanged;
-                PropertyChanged += LayoutRenderer_PropertyChanged;
+                PropertyChanged += OnPropertyChanged;
 
                 UpdateClipToBounds();
             }
         }
 
-        private void LayoutRenderer_PropertyChanged(object sender, PerspexPropertyChangedEventArgs e)
+        private void OnPropertyChanged(object sender, PerspexPropertyChangedEventArgs e)
         {
             if(e.Property == Perspex.Layout.Layoutable.WidthProperty || e.Property == Perspex.Layout.Layoutable.HeightProperty)
             {

@@ -51,7 +51,7 @@ using Xamarin.Forms.Platform.PerspexDesktop;
 //[assembly: ExportRenderer(typeof(ListView), typeof(ListViewRenderer))]
 [assembly: ExportRenderer(typeof(ScrollView), typeof(ScrollViewRenderer))]
 [assembly: ExportRenderer(typeof(ProgressBar), typeof(ProgressBarRenderer))]
-//[assembly: ExportRenderer(typeof(Slider), typeof(SliderRenderer))]
+[assembly: ExportRenderer(typeof(Slider), typeof(SliderRenderer))]
 //[assembly: ExportRenderer(typeof(Switch), typeof(SwitchRenderer))]
 //[assembly: ExportRenderer(typeof(WebView), typeof(WebViewRenderer))]
 [assembly: ExportRenderer(typeof(Frame), typeof(FrameRenderer))]

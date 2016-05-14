@@ -25,12 +25,12 @@ namespace Xamarin.Forms.Platform.PerspexDesktop
 
             _window.Content = _container;
 
-            _container.PropertyChanged += _container_PropertyChanged;
+            _container.PropertyChanged += OnContainerPropertyChanged;
 
             UpdateBounds();
         }
 
-        private void _container_PropertyChanged(object sender, Perspex.PerspexPropertyChangedEventArgs e)
+        private void OnContainerPropertyChanged(object sender, Perspex.PerspexPropertyChangedEventArgs e)
         {
             if (e.Property == Perspex.Layout.Layoutable.WidthProperty || e.Property == Perspex.Layout.Layoutable.HeightProperty || e.Property == Perspex.Layout.Layoutable.BoundsProperty)
             {

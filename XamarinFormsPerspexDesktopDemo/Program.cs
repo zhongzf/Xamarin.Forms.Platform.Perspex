@@ -20,14 +20,13 @@ namespace XamarinFormsPerspexDemo
             InitializeLogging();
 
             //DesktopApplication.Run(typeof(XamarinFormsApp.App));
-            //DesktopApplication.Run(typeof(PrismUnityDemoApp.App), true);  
             //var application = new DesktopApplication();
             //var window = new Window1();
             //window.AttachDevTools();
             //window.Show();
             //application.Run(window);
             //DesktopApplication.Run(typeof(PlatformVisuals.App));
-            DesktopApplication.Run(typeof(TextCellListXaml.App), true, true);
+            //DesktopApplication.Run(typeof(TextCellListXaml.App), true, true);
             //DesktopApplication.Run(typeof(CellContextMenu.App), true, true);
         }
 

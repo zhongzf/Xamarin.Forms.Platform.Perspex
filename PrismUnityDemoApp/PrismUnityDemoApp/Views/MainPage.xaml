@@ -108,7 +108,7 @@
       </ListView>
       <!---->
       <BoxView x:Name="boxView" Color="Lime" HeightRequest="100" />
-      <Image Source="https://developer.xamarin.com/demo/IMG_3256.JPG" />
+      <Image Source="https://developer.xamarin.com/demo/img_3256.jpg" />
       <Switch IsToggled="True"></Switch>
       <Switch></Switch>
       <DatePicker></DatePicker>

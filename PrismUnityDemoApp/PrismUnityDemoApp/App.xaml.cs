@@ -13,7 +13,10 @@ namespace PrismUnityDemoApp
         {
             InitializeComponent();
 
-            NavigationService.NavigateAsync("MainPage?title=Hello%20from%20Xamarin.Forms%20Perspex Desktop");
+            //NavigationService.NavigateAsync("MainPage?title=Hello%20from%20Xamarin.Forms%20Perspex Desktop");
+            var viewModel = new ViewModels.SchoolViewModel();
+            MainPage = new StudentListMainPage();
+            MainPage.BindingContext = viewModel;
         }
 
         protected override void RegisterTypes()

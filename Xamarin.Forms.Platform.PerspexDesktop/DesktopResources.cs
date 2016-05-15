@@ -69,7 +69,7 @@ namespace Xamarin.Forms.Platform.PerspexDesktop
                 {
                     (image = new Perspex.Controls.Image
                     {
-                        Source = ConvertImageSource(x.ImageSource)
+                        Width=32
                     }),
                     (textBlock = new Perspex.Controls.TextBlock
                     {
@@ -89,18 +89,67 @@ namespace Xamarin.Forms.Platform.PerspexDesktop
             Perspex.Controls.Grid.SetColumn(textBlock, 1);
             Perspex.Controls.Grid.SetRow(detailBlock, 1);
             Perspex.Controls.Grid.SetColumn(detailBlock, 1);
+
+            Task.Run(() => UpdateImageSource(image, x.ImageSource));
+
             return grid;
+        }
+
+        static async void UpdateImageSource(Perspex.Controls.Image image, ImageSource imageSource)
+        {
+            ImageSource source = imageSource;
+            IImageSourceHandler handler;
+            if (source != null && (handler = Registrar.Registered.GetHandler<IImageSourceHandler>(source.GetType())) != null)
+            {
+                IBitmap imagesource;
+                try
+                {
+                    imagesource = await handler.LoadImageAsync(source);
+                }
+                catch (OperationCanceledException)
+                {
+                    imagesource = null;
+                }
+
+                // In the time it takes to await the imagesource, some zippy little app
+                // might have disposed of this Image already.
+                if (image != null)
+                    SetImageSource(image, imagesource);
+            }
+            else
+                SetImageSource(image, null);
+        }
+
+        static void SetImageSource(Perspex.Controls.Image image, IBitmap bitmap)
+        {
+            if (Device.IsInvokeRequired)
+            {
+                Device.BeginInvokeOnMainThread(() => { image.Source = bitmap; });
+            }
+            else
+            {
+                image.Source = bitmap;
+            }
         }
 
         private static IBitmap ConvertImageSource(ImageSource imageSource)
         {
             var imageConverter = new ImageConverter();
-            return (IBitmap)imageConverter.Convert(imageSource, typeof(IBitmap), null, null);
+            var value = imageConverter.Convert(imageSource, typeof(IBitmap), null, null);
+            if (value is PerspexDesktop.AsyncValue<IBitmap>)
+            {
+                var asyncValue = (PerspexDesktop.AsyncValue<IBitmap>)value;
+                return asyncValue.Value;
+            }
+            else
+            {
+                return (IBitmap)value;
+            }
         }
 
         public static object GetDefault(string name)
         {
-            if(Application.Current.Resources != null && Application.Current.Resources.ContainsKey(name))
+            if (Application.Current.Resources != null && Application.Current.Resources.ContainsKey(name))
             {
                 return Application.Current.Resources[name];
             }

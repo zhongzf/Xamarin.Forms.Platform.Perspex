@@ -9,7 +9,12 @@ namespace Xamarin.Forms.Platform.PerspexDesktop
 {
     public sealed class ImageLoaderSourceHandler : IImageSourceHandler
     {
-        public async Task<IBitmap> LoadImageAsync(ImageSource imagesoure, CancellationToken cancellationToken = new CancellationToken())
+        public Task<IBitmap> LoadImageAsync(ImageSource imagesoure, CancellationToken cancellationToken = new CancellationToken())
+        {
+            return Task.Run(() => LoadImage(imagesoure, cancellationToken));
+        }
+
+        private async Task<IBitmap> LoadImage(ImageSource imagesoure, CancellationToken cancellationToken)
         {
             var imageLoader = imagesoure as UriImageSource;
             if (imageLoader?.Uri == null)
@@ -24,7 +29,7 @@ namespace Xamarin.Forms.Platform.PerspexDesktop
             try
             {
                 var image = new Bitmap(streamImage);
-                return image;
+                return ((IBitmap)image);
             }
             catch (Exception ex)
             {

@@ -164,22 +164,6 @@
       <Project>{ac4b3dcd-19a0-4857-9bb1-243c1fe07ba6}</Project>
       <Name>PrismUnityDemoApp</Name>
     </ProjectReference>
-    <ProjectReference Include="..\samples\Chapter01\PlatformVisuals\PlatformVisuals\PlatformVisuals\PlatformVisuals.csproj">
-      <Project>{6d20a88c-a4a2-487a-bb1a-614bf9f11bd3}</Project>
-      <Name>PlatformVisuals</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\samples\Chapter19\CellContextMenu\CellContextMenu\CellContextMenu\CellContextMenu.csproj">
-      <Project>{c9bb32c7-9925-4210-b94d-0222aa478aac}</Project>
-      <Name>CellContextMenu</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\samples\Chapter19\CustomNamedColorList\CustomNamedColorList\CustomNamedColorList\CustomNamedColorList.csproj">
-      <Project>{a7d49fdc-ed1b-422e-90c0-8d62922a286d}</Project>
-      <Name>CustomNamedColorList</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\samples\Chapter19\TextCellListXaml\TextCellListXaml\TextCellListXaml\TextCellListXaml.csproj">
-      <Project>{88bfe126-d3ee-4341-be81-ec961e58efdc}</Project>
-      <Name>TextCellListXaml</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Xamarin.Forms.Platform.PerspexDesktop\Xamarin.Forms.Platform.PerspexDesktop.csproj">
       <Project>{5d79dc0b-29b2-442a-a9de-fa7cfa5da887}</Project>
       <Name>Xamarin.Forms.Platform.PerspexDesktop</Name>

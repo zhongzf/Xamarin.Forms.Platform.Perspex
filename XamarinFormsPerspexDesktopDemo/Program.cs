@@ -20,6 +20,7 @@ namespace XamarinFormsPerspexDemo
             InitializeLogging();
 
             //DesktopApplication.Run(typeof(XamarinFormsApp.App));
+            DesktopApplication.Run(typeof(PrismUnityDemoApp.App), true);  
             //var application = new DesktopApplication();
             //var window = new Window1();
             //window.AttachDevTools();

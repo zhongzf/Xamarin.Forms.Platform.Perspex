@@ -24,11 +24,13 @@ namespace PrismUnityDemoApp.ViewModels
             {
                 FullName = "Adam Harmetz",
                 FirstName = "Adam",
+                PhotoFilename = "http://xamarin.github.io/xamarin-forms-book-samples/SchoolOfFineArt/AdamHarmetz.png"
             });
             StudentBody.Students.Add(new Student
             {
                 FullName = "Alan Brewer",
                 FirstName = "Alan",
+                PhotoFilename = "http://xamarin.github.io/xamarin-forms-book-samples/SchoolOfFineArt/AlanBrewer.png"
             });
         }
 

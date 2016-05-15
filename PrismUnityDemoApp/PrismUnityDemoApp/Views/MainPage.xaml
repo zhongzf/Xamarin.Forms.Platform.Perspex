@@ -26,6 +26,10 @@
       </Style>
     </ResourceDictionary>
   </ContentPage.Resources>
+  <ContentPage.Padding>
+    <OnPlatform x:TypeArguments="Thickness"
+                iOS="0, 20, 0, 0" />
+  </ContentPage.Padding>
 
   <ScrollView>
     <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
@@ -119,6 +123,23 @@
       <SearchBar>        
       </SearchBar>
       <WebView x:Name="webView"></WebView>
+      <StackLayout BindingContext="{Binding StudentBody}">
+        <Label Text="{Binding School}"
+               FontSize="Large"
+               FontAttributes="Bold"
+               HorizontalTextAlignment="Center" />
+
+        <ListView ItemsSource="{Binding Students}">
+          <ListView.ItemTemplate>
+            <DataTemplate>
+              <ImageCell ImageSource="{Binding PhotoFilename}"
+                         Text="{Binding FullName}"
+                         Detail="{Binding GradePointAverage,
+                                                StringFormat='G.P.A. = {0:F2}'}" />
+            </DataTemplate>
+          </ListView.ItemTemplate>
+        </ListView>
+      </StackLayout>
     </StackLayout>
   </ScrollView>
 </ContentPage>

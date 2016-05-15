@@ -8,7 +8,7 @@ using System.ComponentModel;
 
 namespace Xamarin.Forms.Platform.PerspexDesktop
 {
-    public class CellControl : ContentControl
+    public class CellControl : /*ContentControl*/ Perspex.Controls.StackPanel
     {
         /// <summary>
         /// Defines the <see cref="Cell"/> property.
@@ -36,7 +36,7 @@ namespace Xamarin.Forms.Platform.PerspexDesktop
         {
             _listView = new Lazy<ListView>(GetListView);
 
-            //DataContextChanged += OnDataContextChanged;
+            //DataContextChanged += OnDataContextChanged;            
 
             //Unloaded += (sender, args) =>
             //{
@@ -51,7 +51,13 @@ namespace Xamarin.Forms.Platform.PerspexDesktop
         public Cell Cell
         {
             get { return (Cell)GetValue(CellProperty); }
-            set { SetValue(CellProperty, value); }
+            set
+            {
+                var oldCell = Cell;
+                var newCell = value;
+                SetSource(oldCell, newCell);
+                SetValue(CellProperty, value);
+            }
         }
 
         public bool IsGroupHeader
@@ -60,54 +66,56 @@ namespace Xamarin.Forms.Platform.PerspexDesktop
             set { SetValue(IsGroupHeaderProperty, value); }
         }
 
-        protected Control CellContent
-        {
-            get { return (Control)Content; }
-        }
+        //protected Control CellContent
+        //{
+        //    get { return (Control)Content; }
+        //}
 
-        protected override Perspex.Size MeasureOverride(Perspex.Size availableSize)
-        {
-            ListView lv = _listView.Value;
+        //protected override Perspex.Size MeasureOverride(Perspex.Size availableSize)
+        //{
+        //    ListView lv = _listView.Value;
 
-            // set the Cell now that we have a reference to the ListView, since it will have been skipped
-            // on DataContextChanged.
-            if (_newValue != null)
-            {
-                SetCell(_newValue);
-                _newValue = null;
-            }
+        //    return new Perspex.Size(100, 100);
 
-            if (Content == null)
-            {
-                if (lv != null)
-                {
-                    if (lv.HasUnevenRows)
-                    {
-                        var estimate = (double)lv.GetValue(MeasuredEstimateProperty);
-                        if (estimate > -1)
-                            return new Perspex.Size(availableSize.Width, estimate);
-                    }
-                    else
-                    {
-                        double rowHeight = lv.RowHeight;
-                        if (rowHeight > -1)
-                            return new Perspex.Size(availableSize.Width, rowHeight);
-                    }
-                }
+        //    // set the Cell now that we have a reference to the ListView, since it will have been skipped
+        //    // on DataContextChanged.
+        //    if (_newValue != null)
+        //    {
+        //        SetCell(_newValue);
+        //        _newValue = null;
+        //    }
 
-                return new Perspex.Size(0, 0);
-            }
+        //    if (Content == null)
+        //    {
+        //        if (lv != null)
+        //        {
+        //            if (lv.HasUnevenRows)
+        //            {
+        //                var estimate = (double)lv.GetValue(MeasuredEstimateProperty);
+        //                if (estimate > -1)
+        //                    return new Perspex.Size(availableSize.Width, estimate);
+        //            }
+        //            else
+        //            {
+        //                double rowHeight = lv.RowHeight;
+        //                if (rowHeight > -1)
+        //                    return new Perspex.Size(availableSize.Width, rowHeight);
+        //            }
+        //        }
 
-            // Children still need measure called on them
-            Perspex.Size result = base.MeasureOverride(availableSize);
+        //        return new Perspex.Size(0, 0);
+        //    }
 
-            if (lv != null)
-            {
-                lv.SetValue(MeasuredEstimateProperty, result.Height);
-            }
+        //    // Children still need measure called on them
+        //    Perspex.Size result = base.MeasureOverride(availableSize);
 
-            return result;
-        }
+        //    if (lv != null)
+        //    {
+        //        lv.SetValue(MeasuredEstimateProperty, result.Height);
+        //    }
+
+        //    return result;
+        //}
 
         static string GetDisplayTextFromGroup(ListView lv, TemplatedItemsList<ItemsView<Cell>, Cell> group)
         {
@@ -182,17 +190,18 @@ namespace Xamarin.Forms.Platform.PerspexDesktop
         //    }
         //}
 
-        //void OnDataContextChanged(Control sender, DataContextChangedEventArgs args)
-        //{
-        //    // We don't want to set the Cell until the ListView is realized, just in case the 
-        //    // Cell has an ItemTemplate. Instead, we'll store the new data item, and it will be
-        //    // set on MeasureOverrideDelegate. However, if the parent is a TableView, we'll already 
-        //    // have a complete Cell object to work with, so we can move ahead.
-        //    if (_isListViewRealized || args.NewValue is Cell)
-        //        SetCell(args.NewValue);
-        //    else if (args.NewValue != null)
-        //        _newValue = args.NewValue;
-        //}
+        protected override void OnDataContextChanged()
+        {
+            base.OnDataContextChanged();
+            // We don't want to set the Cell until the ListView is realized, just in case the 
+            // Cell has an ItemTemplate. Instead, we'll store the new data item, and it will be
+            // set on MeasureOverrideDelegate. However, if the parent is a TableView, we'll already 
+            // have a complete Cell object to work with, so we can move ahead.
+            if (_isListViewRealized || DataContext is Cell)
+                SetCell(DataContext);
+            else if (DataContext != null)
+                _newValue = DataContext;
+        }
 
         //void OnLongTap(object sender, HoldingRoutedEventArgs e)
         //{
@@ -292,8 +301,8 @@ namespace Xamarin.Forms.Platform.PerspexDesktop
 
         void SetupContextMenu()
         {
-            if (CellContent == null || Cell == null)
-                return;
+            //if (CellContent == null || Cell == null)
+            //    return;
 
             //if (!Cell.HasContextActions)
             //{
@@ -329,14 +338,19 @@ namespace Xamarin.Forms.Platform.PerspexDesktop
         void UpdateContent(Cell newCell)
         {
             IDataTemplate dt = GetTemplate(newCell);
-            if (dt != _currentTemplate || Content == null)
+            //if (dt != _currentTemplate || Content == null)
+            //{
+            //    _currentTemplate = dt;
+            //    // Content
+            //    Content = dt.Build(newCell);
+            //}
+
+            //((Control)Content).DataContext = newCell;
+            if(dt != _currentTemplate && Children.Count == 0)
             {
                 _currentTemplate = dt;
-                // TODO: Content
-                //Content = dt.LoadContent();
+                Children.Add(dt.Build(newCell));
             }
-
-            ((Control)Content).DataContext = newCell;
         }
     }
 }

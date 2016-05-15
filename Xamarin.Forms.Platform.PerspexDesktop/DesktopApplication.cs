@@ -25,11 +25,13 @@ namespace Xamarin.Forms.Platform.PerspexDesktop
             var baseLight = (Perspex.Styling.IStyle)loader.Load(
                 new Uri("resm:Perspex.Themes.Default.Accents.BaseLight.xaml?assembly=Perspex.Themes.Default"));
             Styles.Add(baseLight);
-
-            loader.Load(typeof(DesktopApplication), this);
         }
 
+#if DEBUG
+        public void LoadApplication(Type applicationType, bool debugMode = true, bool loadWhenActivated = false)
+#else
         public void LoadApplication(Type applicationType, bool debugMode = false, bool loadWhenActivated = false)
+#endif
         {
             var window = new DesktopWindow();
             if (loadWhenActivated)
@@ -54,7 +56,11 @@ namespace Xamarin.Forms.Platform.PerspexDesktop
             this.Run(window);
         }
 
+#if DEBUG
+        public static void Run(Type applicationType, bool debugMode = true, bool loadWhenActivated = false)
+#else
         public static void Run(Type applicationType, bool debugMode = false, bool loadWhenActivated = false)
+#endif
         {
             var application = new DesktopApplication();
             application.LoadApplication(applicationType, debugMode, loadWhenActivated);

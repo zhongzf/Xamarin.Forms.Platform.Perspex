@@ -37,10 +37,10 @@ namespace Xamarin.Forms.Platform.PerspexDesktop
                     {
                         DataTemplates = new DataTemplates
                         {
-                            new FuncDataTemplate<Cell>(x =>
+                            new FuncDataTemplate<object>(x =>
                                 new CellControl
                                 {
-                                    Cell = x
+                                    Cell = (Cell)x
                                 })
                         }
                     };
@@ -59,7 +59,7 @@ namespace Xamarin.Forms.Platform.PerspexDesktop
                 // TODO: DataContext
                 // WinRT throws an exception if you set ItemsSource directly to a CVS, so bind it.
                 //List.DataContext = new CollectionViewSource { Source = Element.ItemsSource, IsSourceGrouped = Element.IsGroupingEnabled };
-                List.Items = Element.ItemsSource;
+                List.Items = Element.TemplatedItems;
 
                 UpdateGrouping();
                 UpdateHeader();
